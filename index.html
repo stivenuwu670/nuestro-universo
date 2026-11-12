@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080714">
+  <meta name="description" content="Un universo de recuerdos, hecho con amor.">
+  <title>Universe ♡ Rosita — Nuestra historia · V3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="ambient-aurora" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <canvas id="celebration" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <button class="brand" type="button" data-go="0" aria-label="Ir al inicio">
+      <span class="brand-icon">✧</span><span>U<span class="brand-heart">♥</span>R <small>· universe & rosita</small></span>
+    </button>
+    <nav class="chapter-nav" aria-label="Capítulos del regalo">
+      <button data-go="0" class="chapter-dot active" aria-label="Capítulo 1, Bienvenida" aria-current="step"><span>01</span></button>
+      <button data-go="1" class="chapter-dot" aria-label="Capítulo 2, Historia"><span>02</span></button>
+      <button data-go="2" class="chapter-dot" aria-label="Capítulo 3, Universo"><span>03</span></button>
+      <button data-go="3" class="chapter-dot" aria-label="Capítulo 4, Carta"><span>04</span></button>
+      <button data-go="4" class="chapter-dot" aria-label="Capítulo 5, Sorpresas"><span>05</span></button>
+      <button data-go="5" class="chapter-dot" aria-label="Capítulo 6, Final"><span>06</span></button>
+    </nav>
+    <button class="sound-button" id="soundToggle" type="button" aria-label="Activar música" aria-pressed="false">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <span id="soundLabel">Música</span>
+      <span class="sound-led"></span>
+    </button>
+  </header>
+
+  <main id="experience">
+    <!-- 1: BIENVENIDA -->
+    <section class="scene active" id="inicio" data-scene="0" aria-label="Bienvenida">
+      <div class="scene-scroll intro-layout">
+        <div class="intro-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> DE UNIVERSE PARA ROSITA · 12 NOV 2026</div>
+          <div class="intro-pretitle">Para Ashley, mi Rosita. De Steven, tu Universe.</div>
+          <h1>Rosita, tú eres<br><em>mi universo.</em></h1>
+          <p class="intro-description">Comenzamos con dos avatares, un juego y una casualidad. Hoy tenemos historias que ni la mejor partida podría inventar. <strong data-bind="nombre">Ashley</strong>, este pequeño universo tiene nuestros mejores recuerdos.</p>
+          <div class="intro-actions">
+            <button type="button" class="button primary" data-next>Comenzar el viaje <span aria-hidden="true">↗</span></button>
+            <span class="small-note"><span class="sparkle">✦</span> Hecho exclusivamente para ti</span>
+          </div>
+          <div class="date-signature"><span class="date-dash"></span><span data-bind="fechaLarga">12 de noviembre de 2023</span><span class="date-to">—</span><span>mi primer mensaje de amor</span></div>
+        </div>
+        <div class="intro-art" aria-hidden="true">
+          <figure class="hero-photo hero-photo-gaming"><img src="assets/fotos/roblox-01.webp" alt="" loading="eager"><figcaption>DONDE TODO COMENZÓ · 2023</figcaption></figure>
+          <figure class="hero-photo hero-photo-real"><img src="assets/fotos/vida-20.webp" alt="" loading="eager"><figcaption>HASTA ENCONTRARNOS DE VERDAD</figcaption></figure>
+          <div class="orbit-caption cap-top">TÚ & YO · ∞</div>
+          <div class="portal-aura"></div>
+          <div class="portal-disc">
+            <div class="orbit-alias orbit-alias-you">Universe <span>♡</span></div>
+            <div class="orbit-alias orbit-alias-her">Rosita <span>✧</span></div>
+            <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="orbit orbit-three"></span>
+            <span class="portal-core"></span><span class="portal-star star-one">✧</span><span class="portal-star star-two">✧</span>
+          </div>
+          <div class="orbit-caption cap-bottom">U + R &nbsp; · &nbsp; DESDE 2023</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2: HISTORIA -->
+    <section class="scene" id="historia" data-scene="1" aria-label="Nuestra historia" inert>
+      <div class="scene-scroll section-layout">
+        <div class="section-head">
+          <div class="kicker">CAPÍTULO 02 <span>—</span> NUESTRA HISTORIA</div>
+          <h2>Algunos momentos<br><em>se vuelven eternos.</em></h2>
+          <p>Del juego donde nos conocimos a nuestras cartas de amor. Cada capítulo guarda algo verdadero de Steven y Ashley, Universe y Rosita.</p>
+        </div>
+        <div id="memoryGallery" class="memory-gallery" aria-label="Galería interactiva de recuerdos"></div>
+        <div id="timelineRail" class="timeline-rail" aria-label="Línea de tiempo de nuestros recuerdos"></div>
+        <div class="gallery-hint"><span>↔</span> Desliza para explorar nuestros recuerdos · Toca una foto para leer su historia</div>
+        <div class="archive-intro" id="archiveIntro">
+          <div><span class="archive-index">EL ARCHIVO QUE SOLO NOSOTROS ENTENDEMOS</span><h3>48 fotos. 9 videos.<br><em>Una historia que sigue.</em></h3><p>Del primer avatar a nuestros encuentros, nuestras fotos, nuestras risas y todos esos instantes que merecen quedarse.</p></div>
+          <button type="button" id="openArchive" class="button primary" aria-expanded="false" aria-controls="archiveCollection">Abrir todos nuestros recuerdos <span>↗</span></button>
+        </div>
+        <div class="archive-collection" id="archiveCollection" hidden>
+          <div class="archive-title-line"><span>ÁLBUM PERSONAL · 48 FOTOGRAFÍAS</span><span>UNIVERSE × ROSITA</span></div>
+          <div class="archive-filters" role="group" aria-label="Filtrar recuerdos"><button type="button" class="archive-filter active" data-filter="todos" aria-pressed="true">Todas <span>48</span></button><button type="button" class="archive-filter" data-filter="roblox" aria-pressed="false">En Roblox <span>19</span></button><button type="button" class="archive-filter" data-filter="vida" aria-pressed="false">En la vida real <span>29</span></button></div>
+          <div id="photoArchive" class="photo-archive" aria-label="Las 48 fotografías"></div>
+          <div class="archive-title-line video-archive-title"><span>NUESTRO PEQUEÑO CINE · 9 VIDEOS</span><span>ACTIVA UN RECUERDO</span></div>
+          <div id="videoArchive" class="video-archive" aria-label="Los nueve videos"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3: UNIVERSO -->
+    <section class="scene" id="universo" data-scene="2" aria-label="Nuestro universo" inert>
+      <div class="scene-scroll section-layout cosmos-layout">
+        <div class="section-head center">
+          <div class="kicker">CAPÍTULO 03 <span>—</span> NUESTRA CONSTELACIÓN</div>
+          <h2>Hasta las estrellas<br><em>saben de nosotros.</em></h2>
+          <p>Seis estrellas, seis detalles de nuestra historia. Toca cada una para descubrir el recuerdo que guarda.</p>
+        </div>
+        <div class="constellation" id="constellation">
+          <div class="constellation-halo" aria-hidden="true"></div>
+          <svg class="constellation-lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M115 282 L292 100 L493 242 L702 84 L872 242 L713 379 L493 242 L302 393 L115 282"/>
+          </svg>
+          <button type="button" class="cosmic-point selected" data-star="0" style="--x:11.5%;--y:61.3%;--s:15px" aria-label="Ver estrella uno"><span class="star-glint"></span><small>01</small></button>
+          <button type="button" class="cosmic-point" data-star="1" style="--x:29.2%;--y:21.7%;--s:12px" aria-label="Ver estrella dos"><span class="star-glint"></span><small>02</small></button>
+          <button type="button" class="cosmic-point" data-star="2" style="--x:49.3%;--y:52.6%;--s:18px" aria-label="Ver estrella tres"><span class="star-glint"></span><small>03</small></button>
+          <button type="button" class="cosmic-point" data-star="3" style="--x:70.2%;--y:18.3%;--s:13px" aria-label="Ver estrella cuatro"><span class="star-glint"></span><small>04</small></button>
+          <button type="button" class="cosmic-point" data-star="4" style="--x:87.2%;--y:52.6%;--s:12px" aria-label="Ver estrella cinco"><span class="star-glint"></span><small>05</small></button>
+          <button type="button" class="cosmic-point" data-star="5" style="--x:71.3%;--y:82.4%;--s:16px" aria-label="Ver estrella seis"><span class="star-glint"></span><small>06</small></button>
+          <div class="universe-memory" id="universeMemory" aria-live="polite"><span class="universe-kicker">ESTRELLA 01 / 06</span><h3>Donde todo comenzó</h3><p>Entre tantas casualidades del universo, la más bonita fue encontrarte.</p></div>
+          <div class="universe-coordinates" aria-hidden="true">RA 23h 11m 12s &nbsp; DEC +∞</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4: CARTA -->
+    <section class="scene" id="carta" data-scene="3" aria-label="Carta especial" inert>
+      <div class="scene-scroll letter-layout">
+        <div class="letter-side">
+          <div class="kicker">CAPÍTULO 04 <span>—</span> PALABRAS PARA TI</div>
+          <h2>Tres años de palabras.<br><em>Una misma persona.</em></h2>
+          <p>Mi mensaje de 2023, nuestra carta de 2025 y lo que quiero decirte hoy. No he borrado lo que sentía entonces: cada año es una página de esta historia.</p>
+          <div class="letter-tabs" role="tablist" aria-label="Elige una carta de nuestra historia">
+            <button type="button" class="letter-tab" role="tab" data-letter="0" aria-selected="false"><span>2023</span><small>Mi primer mensaje</small></button>
+            <button type="button" class="letter-tab" role="tab" data-letter="1" aria-selected="false"><span>2025</span><small>Mi estrella guía</small></button>
+            <button type="button" class="letter-tab selected" role="tab" data-letter="2" aria-selected="true"><span>2026</span><small>Para ti, hoy</small></button>
+          </div>
+          <p class="letter-chapter-note" id="letterTopic">UNA NUEVA CARTA, UN NUEVO CAPÍTULO</p>
+          <button type="button" class="button primary" id="readLetter">Leer esta carta <span>✧</span></button>
+          <div class="soundtrack"><span>LA BANDA SONORA DE ROSITA</span><p>Billie Eilish · Los Retro · Labios de Cereza 2</p><div class="soundtrack-controls"><button type="button" class="song-choice active" data-music="ambient" aria-pressed="true">♫ Melodía original</button><button type="button" class="song-choice" data-music="personal" aria-pressed="false">+ Nuestra canción</button></div><small>No se incluyen canciones comerciales: puedes cargar un archivo de audio que tengas permiso de usar.</small></div>
+          <span class="letter-music-hint">♫ <button class="link-button" id="changeMusicBtn" type="button">Elegir audio desde tu dispositivo</button> para acompañar la carta.</span>
+        </div>
+        <article class="letter-paper" aria-label="Carta de amor">
+          <div class="paper-top"><span id="letterYear">12 DE NOVIEMBRE DE 2026</span><span>✦ ∞</span></div>
+          <h3 class="letter-paper-title" id="letterTitle">Lo que quiero construir contigo</h3><div class="paper-content" id="letterBodyScroll"><div class="letter-salutation" id="letterSalutation">Ashley, mi Rosita,</div><p id="letterText" class="letter-text" aria-live="off">Presiona «Leer esta carta» para descubrir sus palabras...</p><span class="typing-caret" id="typingCaret" aria-hidden="true"></span></div>
+          <div class="letter-signature"><span>Siempre tuyo,</span><strong id="letterSignature">Tu Steven, tu Universe ♡</strong></div>
+          <div class="paper-seal" aria-hidden="true">♥</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5: SORPRESAS -->
+    <section class="scene" id="sorpresas" data-scene="4" aria-label="Sorpresas interactivas" inert>
+      <div class="scene-scroll section-layout surprise-layout">
+        <div class="section-head center">
+          <div class="kicker">CAPÍTULO 05 <span>—</span> TRES PEQUEÑAS SORPRESAS</div>
+          <h2>Antes de llegar al final,<br><em>abre estos secretos.</em></h2>
+          <p>Tres secretos escritos con nuestros nombres. Descúbrelos y resuelve el pequeño reto que preparé para ti.</p>
+        </div>
+        <div class="surprise-cards" id="surpriseCards">
+          <button class="surprise-card" type="button" data-surprise="0" aria-pressed="false"><span class="surprise-front"><span class="surprise-index">REGALO 01</span><span class="surprise-icon">✉</span><span class="surprise-action">Toca para descubrir <span>↗</span></span></span><span class="surprise-back"><span class="surprise-index">SECRETO 01</span><span class="surprise-back-title">Nuestra coincidencia</span><span class="surprise-back-message">El mejor encuentro no fue ganar una partida: fue conocerte a ti, Rosita.</span><span class="surprise-discovered">✧ DESCUBIERTO</span></span></button>
+          <button class="surprise-card" type="button" data-surprise="1" aria-pressed="false"><span class="surprise-front"><span class="surprise-index">REGALO 02</span><span class="surprise-icon">☾</span><span class="surprise-action">Toca para descubrir <span>↗</span></span></span><span class="surprise-back"><span class="surprise-index">SECRETO 02</span><span class="surprise-back-title">Una pregunta</span><span class="surprise-back-message">12 de noviembre de 2023: «¿Quieres ser mi novia?» Todavía guardo ese mensaje.</span><span class="surprise-discovered">✧ DESCUBIERTO</span></span></button>
+          <button class="surprise-card" type="button" data-surprise="2" aria-pressed="false"><span class="surprise-front"><span class="surprise-index">REGALO 03</span><span class="surprise-icon">♡</span><span class="surprise-action">Toca para descubrir <span>↗</span></span><span class="surprise-back"><span class="surprise-index">SECRETO 03</span><span class="surprise-back-title">Un amor con acciones</span><span class="surprise-back-message">Quiero cuidarte, escucharte y demostrarte lo que siento cada día.</span><span class="surprise-discovered">✧ DESCUBIERTO</span></span></button>
+        </div>
+        <div class="surprise-swipe-hint">↔ Desliza para encontrar los tres regalos</div>
+        <div class="alias-challenge" id="aliasChallenge">
+          <div class="alias-challenge-icon" aria-hidden="true">✧</div>
+          <div class="alias-challenge-main"><span class="alias-challenge-overline">MISIÓN SECRETA · 001</span>
+            <h3>¿Te acuerdas de nuestros nombres en los juegos?</h3>
+            <div id="pairQuestion" class="pair-options">
+              <button type="button" data-pair="wrong">Sol + Luna</button>
+              <button type="button" data-pair="correct">Universe + Rosita</button>
+              <button type="button" data-pair="wrong">Steven + Ashley</button>
+            </div>
+            <div id="pairAnswer" class="pair-answer" hidden><strong>¡Acertaste, Rosita!</strong><p>Podemos cambiar de juego, de pantalla o de capítulo. Pero si volviera a comenzar, volvería a buscarte.</p></div>
+          </div>
+        </div>
+        <div class="secret-status" id="secretStatus"><span class="secret-led"></span> Descubre los 3 secretos para desbloquear la sorpresa final <span id="secretCount">0 / 3</span></div>
+        <div class="secret-unlocked" id="secretUnlocked" hidden><span>✧ MENSAJE DESBLOQUEADO</span><p>Si volviera a entrar a aquel juego sin saber qué pasaría, volvería a elegir el camino que me llevó a ti.</p><button type="button" class="button primary" data-next>Ver el gran final <span>↗</span></button></div>
+      </div>
+    </section>
+
+    <!-- 6: FINAL -->
+    <section class="scene" id="final" data-scene="5" aria-label="Gran final" inert>
+      <div class="scene-scroll final-layout">
+        <div class="final-overline"><span>✧</span> CAPÍTULO 06 · PARA SIEMPRE <span>✧</span></div>
+        <div class="final-photostrip" aria-label="De Universe y Rosita a Steven y Ashley"><img src="assets/fotos/roblox-02.webp" alt="Nuestros avatares en Roblox en 2023" loading="lazy"><span>DE UN JUEGO...</span><img src="assets/fotos/vida-05.webp" alt="Steven y Ashley compartiendo un beso" loading="lazy"><span>...A NUESTRA VIDA ♡</span></div>
+        <div class="final-heart" aria-hidden="true">♡</div>
+        <h2>Feliz cumpleaños<br><em>y feliz aniversario,</em><br><span data-bind="nombre">mi amor</span><span class="final-dot">.</span></h2>
+        <p class="final-quote" data-bind="final">No sé cuántas estrellas hay en el cielo, pero sí sé que elegiría compartir contigo todos mis universos.</p>
+        <div class="time-label">TIEMPO TRANSCURRIDO DESDE MI PRIMER MENSAJE DE AMOR · 12 NOVIEMBRE 2023</div>
+        <div class="counter" id="counter" role="timer" aria-label="Tiempo transcurrido desde el primer mensaje de amor de 2023">
+          <div><strong data-unit="years">00</strong><span>AÑOS</span></div><div class="counter-sep">:</div>
+          <div><strong data-unit="months">00</strong><span>MESES</span></div><div class="counter-sep">:</div>
+          <div><strong data-unit="days">00</strong><span>DÍAS</span></div><div class="counter-sep">:</div>
+          <div><strong data-unit="hours">00</strong><span>HORAS</span></div><div class="counter-sep">:</div>
+          <div><strong data-unit="minutes">00</strong><span>MIN</span></div><div class="counter-sep">:</div>
+          <div><strong data-unit="seconds">00</strong><span>SEG</span></div>
+        </div>
+        <div class="final-actions"><button type="button" class="button primary final-trigger" id="celebrateBtn">Hacer brillar nuestro universo <span>✦</span></button><button type="button" class="button ghost" data-go="0">Volver al inicio ↺</button></div>
+        <div class="final-postscript">DE STEVEN PARA ASHLEY &nbsp; · &nbsp; DE UNIVERSE PARA ROSITA &nbsp; · &nbsp; ♡</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="progress-label"><span id="chapterNumber">01</span><span class="progress-slash">/</span>06 <small id="chapterName">EL COMIENZO</small></div>
+    <div class="progress-track" aria-label="Progreso de la experiencia"><span id="progressFill" style="width:16.667%"></span></div>
+    <div class="pager"><button class="pager-back" id="prevBtn" type="button" aria-label="Capítulo anterior" disabled>← <span>Anterior</span></button><span class="pager-divider"></span><button class="pager-next" id="nextBtn" type="button">Siguiente <span>→</span></button></div>
+  </footer>
+
+  <dialog class="memory-dialog" id="memoryDialog" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" id="closeMemory" aria-label="Cerrar recuerdo">×</button>
+    <div class="modal-kicker" id="modalKicker">NUESTRO RECUERDO</div>
+    <h3 id="modalTitle"></h3>
+    <img id="modalMemoryImage" class="modal-memory-image" alt="Fotografía de nuestro recuerdo" loading="lazy">
+    <p id="modalText"></p>
+    <div class="modal-bottom">✧ UN INSTANTE PARA SIEMPRE</div>
+  </dialog>
+  <dialog class="archive-dialog" id="archiveDialog" aria-label="Visor de recuerdos">
+    <button type="button" id="closeArchiveDialog" class="archive-close" aria-label="Cerrar visor">×</button>
+    <div id="archiveMedia" class="archive-media-view"></div>
+    <div class="archive-overlay-caption"><span id="archiveMediaPosition">RECUERDO 01</span><h3 id="archiveMediaTitle">Un instante contigo</h3><p id="archiveMediaDescription">Nuestro archivo de recuerdos</p></div>
+    <div class="archive-media-controls"><button type="button" id="archivePrevious" aria-label="Recuerdo anterior">← Anterior</button><button type="button" id="archiveNext" aria-label="Recuerdo siguiente">Siguiente →</button></div>
+  </dialog>
+  <input type="file" id="musicPicker" accept="audio/*" hidden>
+  <audio id="customAudio" loop preload="none"></audio>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="cartas.js" defer></script>
+  <script src="archivo.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="archivo-ui.js" defer></script>
+  <script src="space.js" type="module"></script>
+</body>
+</html>

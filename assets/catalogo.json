@@ -1,0 +1,396 @@
+{
+  "fotos": [
+    {
+      "src": "assets/fotos/roblox-01.webp",
+      "original": "RobloxScreenShot20230824_100141367.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 1
+    },
+    {
+      "src": "assets/fotos/roblox-02.webp",
+      "original": "RobloxScreenShot20230824_102124247.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 2
+    },
+    {
+      "src": "assets/fotos/roblox-03.webp",
+      "original": "RobloxScreenShot20230825_160134843.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 3
+    },
+    {
+      "src": "assets/fotos/roblox-04.webp",
+      "original": "RobloxScreenShot20230825_165049943.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 4
+    },
+    {
+      "src": "assets/fotos/roblox-05.webp",
+      "original": "RobloxScreenShot20230827_093513746.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 5
+    },
+    {
+      "src": "assets/fotos/roblox-06.webp",
+      "original": "RobloxScreenShot20230828_093913673.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 6
+    },
+    {
+      "src": "assets/fotos/roblox-07.webp",
+      "original": "RobloxScreenShot20230919_095533747.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 7
+    },
+    {
+      "src": "assets/fotos/roblox-08.webp",
+      "original": "RobloxScreenShot20231104_181234987.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 8
+    },
+    {
+      "src": "assets/fotos/roblox-09.webp",
+      "original": "RobloxScreenShot20231105_035524044.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 9
+    },
+    {
+      "src": "assets/fotos/roblox-10.webp",
+      "original": "RobloxScreenShot20231105_151044475.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 10
+    },
+    {
+      "src": "assets/fotos/roblox-11.webp",
+      "original": "RobloxScreenShot20231105_174746115.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 11
+    },
+    {
+      "src": "assets/fotos/roblox-12.webp",
+      "original": "RobloxScreenShot20231105_174913217.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 12
+    },
+    {
+      "src": "assets/fotos/roblox-13.webp",
+      "original": "RobloxScreenShot20231122_225429676.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 13
+    },
+    {
+      "src": "assets/fotos/roblox-14.webp",
+      "original": "RobloxScreenShot20231122_225551206.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 14
+    },
+    {
+      "src": "assets/fotos/roblox-15.webp",
+      "original": "RobloxScreenShot20231206_081420318.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 15
+    },
+    {
+      "src": "assets/fotos/roblox-16.webp",
+      "original": "RobloxScreenShot20231206_081516420.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 16
+    },
+    {
+      "src": "assets/fotos/roblox-17.webp",
+      "original": "RobloxScreenShot20231206_081606262.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 17
+    },
+    {
+      "src": "assets/fotos/roblox-18.webp",
+      "original": "RobloxScreenShot20231215_113754352.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 18
+    },
+    {
+      "src": "assets/fotos/roblox-19.webp",
+      "original": "RobloxScreenShot20231220_044952999.png",
+      "tipo": "Roblox",
+      "tag": "roblox",
+      "numero": 19
+    },
+    {
+      "src": "assets/fotos/vida-01.webp",
+      "original": "694.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 1
+    },
+    {
+      "src": "assets/fotos/vida-02.webp",
+      "original": "695.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 2
+    },
+    {
+      "src": "assets/fotos/vida-03.webp",
+      "original": "700.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 3
+    },
+    {
+      "src": "assets/fotos/vida-04.webp",
+      "original": "701.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 4
+    },
+    {
+      "src": "assets/fotos/vida-05.webp",
+      "original": "710.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 5
+    },
+    {
+      "src": "assets/fotos/vida-06.webp",
+      "original": "712.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 6
+    },
+    {
+      "src": "assets/fotos/vida-07.webp",
+      "original": "717.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 7
+    },
+    {
+      "src": "assets/fotos/vida-08.webp",
+      "original": "724.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 8
+    },
+    {
+      "src": "assets/fotos/vida-09.webp",
+      "original": "726.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 9
+    },
+    {
+      "src": "assets/fotos/vida-10.webp",
+      "original": "729.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 10
+    },
+    {
+      "src": "assets/fotos/vida-11.webp",
+      "original": "740.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 11
+    },
+    {
+      "src": "assets/fotos/vida-12.webp",
+      "original": "742.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 12
+    },
+    {
+      "src": "assets/fotos/vida-13.webp",
+      "original": "746.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 13
+    },
+    {
+      "src": "assets/fotos/vida-14.webp",
+      "original": "747.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 14
+    },
+    {
+      "src": "assets/fotos/vida-15.webp",
+      "original": "748.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 15
+    },
+    {
+      "src": "assets/fotos/vida-16.webp",
+      "original": "751.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 16
+    },
+    {
+      "src": "assets/fotos/vida-17.webp",
+      "original": "752.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 17
+    },
+    {
+      "src": "assets/fotos/vida-18.webp",
+      "original": "759.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 18
+    },
+    {
+      "src": "assets/fotos/vida-19.webp",
+      "original": "76.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 19
+    },
+    {
+      "src": "assets/fotos/vida-20.webp",
+      "original": "760.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 20
+    },
+    {
+      "src": "assets/fotos/vida-21.webp",
+      "original": "768.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 21
+    },
+    {
+      "src": "assets/fotos/vida-22.webp",
+      "original": "770.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 22
+    },
+    {
+      "src": "assets/fotos/vida-23.webp",
+      "original": "81.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 23
+    },
+    {
+      "src": "assets/fotos/vida-24.webp",
+      "original": "86.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 24
+    },
+    {
+      "src": "assets/fotos/vida-25.webp",
+      "original": "87.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 25
+    },
+    {
+      "src": "assets/fotos/vida-26.webp",
+      "original": "IMG_1681.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 26
+    },
+    {
+      "src": "assets/fotos/vida-27.webp",
+      "original": "IMG_20231203_062328_645.webp",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 27
+    },
+    {
+      "src": "assets/fotos/vida-28.webp",
+      "original": "Screenshot_2023-09-17-15-56-53-055-edit_com.lemon.lvoverseas.jpg",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 28
+    },
+    {
+      "src": "assets/fotos/vida-29.webp",
+      "original": "image-41.png",
+      "tipo": "En persona",
+      "tag": "vida",
+      "numero": 29
+    }
+  ],
+  "videos": [
+    {
+      "src": "assets/videos/recuerdo-01.mp4",
+      "poster": "assets/portadas/recuerdo-01.webp",
+      "original": "E9AEF56A-F6B2-462D-B346-D8A45788DAA6.mp4",
+      "duracion": 9
+    },
+    {
+      "src": "assets/videos/recuerdo-02.mp4",
+      "poster": "assets/portadas/recuerdo-02.webp",
+      "original": "VID_71240402_022902_000.mp4",
+      "duracion": 10
+    },
+    {
+      "src": "assets/videos/recuerdo-03.mp4",
+      "poster": "assets/portadas/recuerdo-03.webp",
+      "original": "copy_0BAD5489-7584-4D52-B264-21EB51B917B7.mov",
+      "duracion": 14
+    },
+    {
+      "src": "assets/videos/recuerdo-04.mp4",
+      "poster": "assets/portadas/recuerdo-04.webp",
+      "original": "copy_88EA23CF-61DC-4090-9ADC-051A2803BED3.mov",
+      "duracion": 8
+    },
+    {
+      "src": "assets/videos/recuerdo-05.mp4",
+      "poster": "assets/portadas/recuerdo-05.webp",
+      "original": "copy_E513B129-7864-4C60-8D88-119E03D49A23.mov",
+      "duracion": 10
+    },
+    {
+      "src": "assets/videos/recuerdo-06.mp4",
+      "poster": "assets/portadas/recuerdo-06.webp",
+      "original": "e2e876babbac4c40a327d8057de55693.mov",
+      "duracion": 14
+    },
+    {
+      "src": "assets/videos/recuerdo-07.mp4",
+      "poster": "assets/portadas/recuerdo-07.webp",
+      "original": "filtered-ED4DB360-F6C5-487C-B85E-61A08F6DF4C8.mov",
+      "duracion": 3
+    },
+    {
+      "src": "assets/videos/recuerdo-08.mp4",
+      "poster": "assets/portadas/recuerdo-08.webp",
+      "original": "filtered-F000A6F1-8A79-4EAA-91F3-300EAC1DEB4A-1.mov",
+      "duracion": 12
+    },
+    {
+      "src": "assets/videos/recuerdo-09.mp4",
+      "poster": "assets/portadas/recuerdo-09.webp",
+      "original": "lv_0_20230828213526.mp4",
+      "duracion": 30
+    }
+  ]
+}

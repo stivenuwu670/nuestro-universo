@@ -1,0 +1,98 @@
+# Nuestro Universo V3 — Steven y Ashley
+### Universe × Rosita · Un regalo de cumpleaños y aniversario
+
+Experiencia web romántica de seis capítulos construida con **HTML, CSS y JavaScript**. Usa Three.js para las estrellas cuando hay conexión y admite una alternativa Canvas sin conexión. No necesita Node.js, base de datos ni compilación.
+
+## 1. Abrir el proyecto
+
+1. Descomprime el ZIP. Entra a la carpeta `Nuestro_Universo_V3`.
+2. Abre la carpeta en Visual Studio Code.
+3. Si aún no la tienes, instala **Live Server**, extensión de Ritwick Dey.
+4. Haz clic derecho sobre `index.html` → **Open with Live Server**.
+5. El navegador abrirá una dirección local, normalmente `http://127.0.0.1:5500/`.
+
+**Importante:** extrae el ZIP antes de usarlo. No ejecutes el HTML directamente dentro de la carpeta comprimida.
+
+## 2. Qué incluye la versión 3
+
+| Capítulo | Contenido |
+|---|---|
+| 01 — Bienvenida | Pantalla cinematográfica con planeta, estrellas 3D y fotos reales de Roblox y de su vida juntos. |
+| 02 — Nuestra historia | Seis recuerdos destacados, línea de tiempo, **álbum de 48 fotografías** (19 de Roblox y 29 de otros momentos) y **9 videos reproducibles**. |
+| 03 — Nuestro universo | Constelación de seis estrellas interactivas. |
+| 04 — Cartas | Mensaje original de **2023**, carta de **2025** y una propuesta de dedicatoria para **2026**. |
+| 05 — Sorpresas | Tres tarjetas interactivas y una pregunta sobre Universe y Rosita. |
+| 06 — Final | Dedicatoria, fotos de Roblox a la vida real, contador y lluvia de estrellas. |
+
+En el capítulo 2, pulsa **«Abrir todos nuestros recuerdos»**. Los filtros permiten visualizar todas las fotos, solo Roblox o solo vida real. Al pulsar una foto o un video, se abre un visor que permite avanzar y retroceder. En celular también puedes deslizar.
+
+Los archivos originales se conservaron por su nombre en `assets/catalogo.json` como referencia. Las fotos del sitio están convertidas a WebP para ahorrar espacio, y los nueve videos a MP4 para facilitar la reproducción en navegadores.
+
+## 3. Ajustes personales
+
+En `app.js` busca el bloque `const CONFIG = { ... }`:
+
+- `nombre`: nombre para Ashley.
+- `nombreReal`: Steven.
+- `nombreJuego`: Universe.
+- `nombreJuegoElla`: Rosita.
+- `fechaInicio`: actualmente `2023-11-12T00:00:00`, **fecha del primer mensaje**, no una fecha oficial de noviazgo confirmada.
+- `fraseFinal`: dedicatoria final.
+- `recuerdos`: los seis recuerdos principales (títulos, textos y portadas).
+- `estrellas`: textos de la constelación.
+
+Las cartas completas están en **`cartas.js`**. La carta de 2026 es una propuesta editable; las de 2023 y 2025 contienen los textos facilitados para el regalo.
+
+## 4. Música
+
+La web ya tiene una **melodía ambiental original**, que empieza al pulsar el botón «Música». Los nombres Billie Eilish, Los Retro y *Labios de Cereza 2* figuran como referencias de los gustos musicales de Ashley, pero **no se adjuntan grabaciones comerciales** porque no se enviaron archivos de audio de esas canciones.
+
+Dos opciones para usar música personal:
+
+**Solo en la sesión actual:** en el capítulo 4 pulsa «Elegir audio desde tu dispositivo» y elige un MP3. La canción se escuchará en tu navegador, pero NO se guardará para Ashley ni seguirá disponible al recargar.
+
+**Para que Ashley lo escuche desde el enlace publicado:**
+
+1. Añade a `assets/musica/` un archivo musical que tengas derecho a utilizar, por ejemplo `cancion.mp3`.
+2. En `app.js`, cambia `musica: ""` a `musica: "assets/musica/cancion.mp3"`.
+3. Guarda y vuelve a cargar el navegador.
+4. El botón de música reproducirá ese archivo. Los navegadores exigen una interacción antes de iniciar audio con sonido.
+
+## 5. Compartirlo por GitHub Pages
+
+**Recomendado: crear un repositorio nuevo**, en vez de sustituir el regalo anterior `misosa`.
+
+1. En GitHub pulsa **New repository** y elige un nombre, por ejemplo `nuestro-universo`.
+2. Sube todos los archivos de esta carpeta a la **raíz** de la rama `main`: `index.html`, los `.js`, `styles.css` y la carpeta `assets/`.
+3. En el repositorio abre **Settings → Pages**.
+4. En **Build and deployment**, selecciona **Deploy from a branch**, elige `main` y `/(root)` y guarda.
+5. GitHub mostrará una URL parecida a `https://TU-USUARIO.github.io/nuestro-universo/`.
+6. Prueba esa URL en un celular antes de compartirla con Ashley.
+
+El sitio pesa aproximadamente **43 MB**, porque contiene los 9 videos, por lo que una buena conexión mejora la primera carga. Los videos no se descargan todos al entrar: se cargan cuando se abren.
+
+### Privacidad importante
+
+GitHub Pages normalmente hace públicos los archivos del sitio desplegado. **Cualquier persona que consiga el enlace podrá acceder a las fotos, videos y cartas**, y estos archivos no estarán protegidos solo por no compartir el link. Si hay recuerdos que prefieren mantener privados, retíralos antes de publicarlos o usa una plataforma de acceso restringido. Se recomienda pedir el consentimiento de las personas que salen en las fotos si el sitio será público.
+
+## 6. Estructura del proyecto
+
+```text
+Nuestro_Universo_V3/
+├── index.html            ← inicia aquí
+├── styles.css            ← apariencia y animaciones
+├── app.js                ← seis capítulos y CONFIG
+├── cartas.js             ← cartas de 2023, 2025 y 2026
+├── archivo.js            ← lista de los 48 archivos y 9 videos
+├── archivo-ui.js         ← filtros, tarjetas, visor y navegación
+├── space.js              ← fondo de estrellas 3D y Canvas
+├── assets/
+│   ├── fotos/            ← 48 fotografías optimizadas
+│   ├── videos/           ← 9 videos MP4
+│   ├── portadas/         ← imágenes previas de los videos
+│   ├── musica/           ← coloca aquí tu MP3 autorizado
+│   └── catalogo.json     ← nombres originales y referencias
+└── README.md
+```
+
+Diseñado para escritorio y dispositivos móviles. No depende de servicios externos para el contenido personal: solo el efecto Three.js y las fuentes web intentan descargarse desde Internet; tienen alternativas locales.
