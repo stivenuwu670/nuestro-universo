@@ -56,10 +56,31 @@
     $$('.photo-archive-card').forEach(node=>node.hidden=filter!=='todos'&&filter!==node.dataset.group);
   }));
 
+  // Medidas reales: ajusta todo el contenido dentro del visor, sin recortar.
+  function fitCurrentMedia(){
+    if(!dialog.open)return;
+    const media=$('.archive-full-photo, .archive-full-video',overlay);
+    if(!media)return;
+    const isVideo=media.tagName==='VIDEO';
+    const nativeWidth=isVideo ? media.videoWidth : media.naturalWidth;
+    const nativeHeight=isVideo ? media.videoHeight : media.naturalHeight;
+    if(!nativeWidth||!nativeHeight)return;
+
+    const style=getComputedStyle(overlay);
+    const paddingX=parseFloat(style.paddingLeft||0)+parseFloat(style.paddingRight||0);
+    const paddingY=parseFloat(style.paddingTop||0)+parseFloat(style.paddingBottom||0);
+    const maxWidth=Math.max(1,overlay.clientWidth-paddingX-2);
+    const maxHeight=Math.max(1,overlay.clientHeight-paddingY-2);
+    const scale=Math.min(maxWidth/nativeWidth,maxHeight/nativeHeight,1);
+    media.style.width=Math.floor(nativeWidth*scale)+'px';
+    media.style.height=Math.floor(nativeHeight*scale)+'px';
+  }
+
   function openItem(kind,index){
     type=kind;current=index;
     showItem();
-    if(!dialog.open) dialog.showModal();
+    if(!dialog.open)dialog.showModal();
+    requestAnimationFrame(fitCurrentMedia);
   }
   function showItem(){
     const item=collections[type][current];
@@ -67,6 +88,9 @@
     overlay.replaceChildren();
     if(type==='fotos'){
       const img=document.createElement('img');img.src=item.src;img.alt=item.subtitulo;img.className='archive-full-photo';
+      img.loading='eager';
+      img.decoding='async';
+      img.addEventListener('load',fitCurrentMedia,{once:true});
       overlay.append(img);
       text('#archiveMediaTitle',item.tag==='roblox' ? 'Universe y Rosita' : 'Steven y Ashley');
       text('#archiveMediaDescription',imageLabel(item));
@@ -74,6 +98,7 @@
       if(typeof stopMusic==='function')stopMusic();
       const video=document.createElement('video');video.src=item.src;video.poster=item.poster;video.controls=true;video.autoplay=true;video.playsInline=true;video.preload='metadata';
       video.setAttribute('aria-label',item.titulo);video.className='archive-full-video';
+      video.addEventListener('loadedmetadata',fitCurrentMedia,{once:true});
       overlay.append(video);video.play().catch(()=>{});
       text('#archiveMediaTitle',item.titulo);text('#archiveMediaDescription','Un video guardado para nosotros');
     }
@@ -96,4 +121,10 @@
   let startX=null;
   overlay.addEventListener('touchstart',ev=>{if(ev.touches.length===1)startX=ev.touches[0].clientX},{passive:true});
   overlay.addEventListener('touchend',ev=>{if(startX===null||ev.changedTouches.length!==1)return;const dx=ev.changedTouches[0].clientX-startX;startX=null;if(Math.abs(dx)>85)navigate(dx<0?1:-1)},{passive:true});
+  // También funciona al rotar el teléfono o cambiar el tamaño de la ventana.
+  window.addEventListener('resize',fitCurrentMedia);
+  if('ResizeObserver' in window){
+    const observer=new ResizeObserver(fitCurrentMedia);
+    observer.observe(overlay);
+  }
 })();
