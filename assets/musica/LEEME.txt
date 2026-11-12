@@ -1,3 +1,11 @@
-Coloca aqui un archivo de audio que tengas permiso de usar y define la ruta en app.js dentro de CONFIG.musica.
-Ejemplo: musica: "assets/musica/cancion.mp3"
-No se incluyen canciones comerciales.
+NUESTRO UNIVERSO V3.2 — PLAYLIST DE ASHLEY
+
+Solo estas 5 pistas. Colócalas aquí con los nombres exactos si tienes permiso para distribuirlas:
+01-recuerdo-especial.mp3
+02-labios-de-cereza-2.mp3
+03-my-love-mine-all-mine.mp3
+04-tu-sancho.mp3
+05-wildflower.mp3
+
+No se incluyen archivos de música comercial en el repositorio.
+Publicarlos en GitHub Pages requiere los derechos de distribución correspondientes.
