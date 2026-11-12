@@ -75,7 +75,7 @@ function goToScene(index) {
   scenes[sceneIndex].classList.add("active");
   const nextScroll = scenes[sceneIndex].querySelector(".scene-scroll");
   if (nextScroll) nextScroll.scrollTop = 0;
-  $(".chapter-dot").forEach((button, i) => {
+  document.querySelectorAll(".chapter-dot").forEach((button, i) => {
     const active = i === sceneIndex;
     button.classList.toggle("active", active);
     if (active) button.setAttribute("aria-current", "step");
