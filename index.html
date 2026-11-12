@@ -132,8 +132,28 @@
           </div>
           <p class="letter-chapter-note" id="letterTopic">UNA NUEVA CARTA, UN NUEVO CAPÍTULO</p>
           <button type="button" class="button primary" id="readLetter">Leer esta carta <span>✧</span></button>
-          <div class="soundtrack"><span>LA BANDA SONORA DE ROSITA</span><p>Billie Eilish · Los Retro · Labios de Cereza 2</p><div class="soundtrack-controls"><button type="button" class="song-choice active" data-music="ambient" aria-pressed="true">♫ Melodía original</button><button type="button" class="song-choice" data-music="personal" aria-pressed="false">+ Nuestra canción</button></div><small>No se incluyen canciones comerciales: puedes cargar un archivo de audio que tengas permiso de usar.</small></div>
-          <span class="letter-music-hint">♫ <button class="link-button" id="changeMusicBtn" type="button">Elegir audio desde tu dispositivo</button> para acompañar la carta.</span>
+          <div class="soundtrack" id="playlistPanel">
+            <span>LA MÚSICA DE NUESTRA HISTORIA</span>
+            <p>Estas cinco canciones, y ninguna más. Una banda sonora elegida para ti.</p>
+            <div class="music-now-playing" aria-live="polite">
+              <span id="musicTrackCount">01 / 05 · EN PAUSA</span>
+              <strong id="musicTrackTitle">Nuestra canción especial</strong>
+              <small id="musicTrackArtist">Un recuerdo de los dos</small>
+            </div>
+            <div class="soundtrack-controls" role="group" aria-label="Elige una de las cinco canciones">
+              <button type="button" class="song-choice active" data-track="0" aria-pressed="true">01 · Nuestra canción especial</button>
+              <button type="button" class="song-choice" data-track="1" aria-pressed="false">02 · Labios de Cereza 2</button>
+              <button type="button" class="song-choice" data-track="2" aria-pressed="false">03 · My Love Mine All Mine</button>
+              <button type="button" class="song-choice" data-track="3" aria-pressed="false">04 · Tu Sancho</button>
+              <button type="button" class="song-choice" data-track="4" aria-pressed="false">05 · WILDFLOWER</button>
+            </div>
+            <div class="music-transport">
+              <button type="button" id="musicPrevious" aria-label="Canción anterior">← Anterior</button>
+              <button type="button" id="musicPlay" aria-label="Reproducir canción">▶ Reproducir</button>
+              <button type="button" id="musicNext" aria-label="Canción siguiente">Siguiente →</button>
+            </div>
+            <small class="music-help">Selecciona una canción y presiona reproducir. Si todavía no está publicada, necesitarás añadir su archivo MP3.</small>
+          </div>
         </div>
         <article class="letter-paper" aria-label="Carta de amor">
           <div class="paper-top"><span id="letterYear">12 DE NOVIEMBRE DE 2026</span><span>✦ ∞</span></div>
@@ -150,7 +170,7 @@
         <div class="section-head center">
           <div class="kicker">CAPÍTULO 05 <span>—</span> TRES PEQUEÑAS SORPRESAS</div>
           <h2>Antes de llegar al final,<br><em>abre estos secretos.</em></h2>
-          <p>Tres secretos escritos con nuestros nombres. Descúbrelos y resuelve el pequeño reto que preparé para ti.</p>
+          <p>Tres secretos escritos con nuestros nombres. Descúbrelos y abre un recuerdo especial que preparé solo para ti.</p>
         </div>
         <div class="surprise-cards" id="surpriseCards">
           <button class="surprise-card" type="button" data-surprise="0" aria-pressed="false"><span class="surprise-front"><span class="surprise-index">REGALO 01</span><span class="surprise-icon">✉</span><span class="surprise-action">Toca para descubrir <span>↗</span></span></span><span class="surprise-back"><span class="surprise-index">SECRETO 01</span><span class="surprise-back-title">Nuestra coincidencia</span><span class="surprise-back-message">El mejor encuentro no fue ganar una partida: fue conocerte a ti, Rosita.</span><span class="surprise-discovered">✧ DESCUBIERTO</span></span></button>
@@ -158,16 +178,21 @@
           <button class="surprise-card" type="button" data-surprise="2" aria-pressed="false"><span class="surprise-front"><span class="surprise-index">REGALO 03</span><span class="surprise-icon">♡</span><span class="surprise-action">Toca para descubrir <span>↗</span></span><span class="surprise-back"><span class="surprise-index">SECRETO 03</span><span class="surprise-back-title">Un amor con acciones</span><span class="surprise-back-message">Quiero cuidarte, escucharte y demostrarte lo que siento cada día.</span><span class="surprise-discovered">✧ DESCUBIERTO</span></span></button>
         </div>
         <div class="surprise-swipe-hint">↔ Desliza para encontrar los tres regalos</div>
-        <div class="alias-challenge" id="aliasChallenge">
-          <div class="alias-challenge-icon" aria-hidden="true">✧</div>
-          <div class="alias-challenge-main"><span class="alias-challenge-overline">MISIÓN SECRETA · 001</span>
-            <h3>¿Te acuerdas de nuestros nombres en los juegos?</h3>
-            <div id="pairQuestion" class="pair-options">
-              <button type="button" data-pair="wrong">Sol + Luna</button>
-              <button type="button" data-pair="correct">Universe + Rosita</button>
-              <button type="button" data-pair="wrong">Steven + Ashley</button>
+        <div class="alias-challenge memory-reveal" id="aliasChallenge">
+          <div class="alias-challenge-icon" aria-hidden="true">♡</div>
+          <div class="alias-challenge-main">
+            <span class="alias-challenge-overline">UN RECUERDO QUE GUARDARÍA POR SIEMPRE</span>
+            <h3>De Universe y Rosita a Steven y Ashley.</h3>
+            <p class="memory-intro">Lo que empezó detrás de dos pantallas se convirtió en abrazos, besos y momentos que quisiera repetir mil veces.</p>
+            <button type="button" class="memory-reveal-button" id="revealMemory" aria-expanded="false" aria-controls="memoryRevealContent">✧ Abrir mi recuerdo favorito</button>
+            <div class="memory-reveal-content" id="memoryRevealContent" hidden>
+              <img src="assets/fotos/vida-05.webp" alt="Un recuerdo especial de Steven y Ashley" loading="lazy">
+              <div>
+                <strong>Volvería a encontrarte.</strong>
+                <p>Si pudiera volver al día en que nuestras historias se cruzaron, elegiría ese mismo camino. No sabía todo lo que vendría después, pero hoy sé que conocerte fue uno de los regalos más bonitos de mi vida. Te amo, Ashley.</p>
+                <span>— Tu Steven, tu Universe ♡</span>
+              </div>
             </div>
-            <div id="pairAnswer" class="pair-answer" hidden><strong>¡Acertaste, Rosita!</strong><p>Podemos cambiar de juego, de pantalla o de capítulo. Pero si volviera a comenzar, volvería a buscarte.</p></div>
           </div>
         </div>
         <div class="secret-status" id="secretStatus"><span class="secret-led"></span> Descubre los 3 secretos para desbloquear la sorpresa final <span id="secretCount">0 / 3</span></div>
@@ -218,8 +243,7 @@
     <div class="archive-overlay-caption"><span id="archiveMediaPosition">RECUERDO 01</span><h3 id="archiveMediaTitle">Un instante contigo</h3><p id="archiveMediaDescription">Nuestro archivo de recuerdos</p></div>
     <div class="archive-media-controls"><button type="button" id="archivePrevious" aria-label="Recuerdo anterior">← Anterior</button><button type="button" id="archiveNext" aria-label="Recuerdo siguiente">Siguiente →</button></div>
   </dialog>
-  <input type="file" id="musicPicker" accept="audio/*" hidden>
-  <audio id="customAudio" loop preload="none"></audio>
+  <audio id="customAudio" preload="metadata"></audio>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="cartas.js" defer></script>
   <script src="archivo.js" defer></script>
