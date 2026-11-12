@@ -127,3 +127,71 @@
   .memory-reveal .alias-challenge-main h3{font-size:clamp(23px,6.2vw,30px)}
   .memory-intro{font-size:12px}
 }
+
+
+/* V3.3 · Adivina nuestra canción especial · ocho canciones */
+.song-guess {
+  position:relative; width:min(1090px,100%); margin:26px auto 20px; padding:clamp(19px,3vw,29px);
+  border:1px solid rgba(251,188,231,.33); border-radius:17px;
+  background:radial-gradient(ellipse at 10% 8%,rgba(231,132,190,.18),transparent 55%),
+             radial-gradient(ellipse at 90% 90%,rgba(135,96,209,.14),transparent 51%),
+             linear-gradient(150deg,rgba(22,19,47,.95),rgba(16,13,33,.96));
+  box-shadow:0 12px 48px rgba(6,5,22,.22);
+}
+.song-guess-header {max-width:780px; margin-bottom:22px}
+.song-guess-overline {display:block;color:#f1b2db;font-size:10px;font-weight:700;letter-spacing:.18em}
+.song-guess h3 {font:400 clamp(28px,3.7vw,43px)/1.15 var(--display),Georgia,serif;color:#ffeff8;margin:9px 0 13px}
+.song-guess-header p {color:#d4c4dc;font-size:13px;line-height:1.7;margin:0}
+.song-guess-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.song-guess-grid button {
+  display:flex; flex-direction:column;justify-content:center;align-items:flex-start;
+  gap:8px;min-width:0;min-height:94px;padding:15px 13px;text-align:left;
+  color:#fae2f5;font-size:12px;font-weight:650;line-height:1.45;
+  background:linear-gradient(135deg,rgba(244,168,217,.095),rgba(121,97,190,.075));
+  border:1px solid rgba(249,192,230,.24);border-radius:11px;cursor:pointer;
+  transition:border-color .18s ease,background .18s ease,transform .18s ease;
+  overflow-wrap:anywhere;
+}
+.song-guess-grid button:hover:not(:disabled),
+.song-guess-grid button:focus-visible {border-color:#facbe6;background:rgba(239,168,215,.17);transform:translateY(-2px)}
+.song-guess-grid button:focus-visible {outline:2px solid #facbe6;outline-offset:2px}
+.song-guess-grid button small {font-size:10px;font-weight:400;color:#c3afcf;line-height:1.35}
+.song-guess-grid button.guess-incorrect {border-color:rgba(252,149,168,.58);background:rgba(232,106,149,.1)}
+.song-guess-grid button.guess-correct {border-color:rgba(253,192,228,.94);background:rgba(240,155,208,.25);box-shadow:0 0 25px rgba(239,150,216,.16)}
+.song-guess-grid button:disabled:not(.guess-correct){opacity:.62;cursor:default}
+.song-guess-feedback {margin-top:16px;min-height:25px;color:#e9bbda;font-size:12px;line-height:1.5}
+.song-guess-win[hidden],.official-player-host[hidden],.music-official-link[hidden] {display:none!important}
+.song-guess-win {display:grid;grid-template-columns:minmax(130px,230px) minmax(0,1fr);gap:23px;align-items:center;margin-top:19px;padding:18px;border:1px solid rgba(250,196,228,.34);border-radius:12px;background:rgba(234,166,215,.07);animation:songWinIn .5s ease both}
+@keyframes songWinIn {from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.song-guess-win img {display:block;width:100%;aspect-ratio:4/3;max-height:235px;object-fit:cover;border-radius:10px}
+.song-guess-win span {display:block;font-size:9px;letter-spacing:.15em;color:#f9bede}
+.song-guess-win h4 {font:400 clamp(25px,3vw,36px)/1.18 var(--display),Georgia,serif;color:#ffe9f8;margin:9px 0 11px}
+.song-guess-win p {font-size:12.5px;line-height:1.75;color:#e4d1e5;margin:0 0 14px}
+.song-guess-win a,.music-official-link {display:inline-flex;align-items:center;gap:7px;color:#ffe3f2;text-decoration:none;border-bottom:1px solid rgba(243,180,224,.5);padding-bottom:3px;line-height:1.6}
+.song-guess-win a:hover,.music-official-link:hover{color:#fff;border-color:#fff}
+.official-player-host {width:100%;margin:14px 0 12px;aspect-ratio:16/9;max-height:260px;border-radius:11px;overflow:hidden;border:1px solid rgba(247,184,227,.32);background:#0a081d}
+.official-player-host iframe {display:block;width:100%;height:100%;border:0}
+.music-official-link {margin:10px 0 4px;font-size:11px}
+@media(max-width:1050px) {
+  .song-guess-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px) {
+  .song-guess {padding:19px 14px;margin:22px auto 17px}
+  .song-guess h3 {font-size:clamp(29px,7vw,38px)}
+  .song-guess-header p {font-size:12px}
+  .song-guess-grid{gap:8px}
+  .song-guess-grid button{padding:12px 10px;min-height:87px;font-size:11px}
+  .song-guess-grid button small{font-size:9px}
+  .song-guess-win{grid-template-columns:1fr;gap:13px;padding:13px}
+  .song-guess-win img{max-height:240px;aspect-ratio:16/9}
+  .song-guess-win h4{font-size:clamp(27px,7vw,35px)}
+  .official-player-host{max-height:250px}
+}
+@media(max-width:390px) {
+  .song-guess-grid {grid-template-columns:1fr}
+  .song-guess-grid button {min-height:65px;padding:11px 12px;gap:4px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .song-guess-win {animation:none}
+  .song-guess-grid button {transition:none}
+}
