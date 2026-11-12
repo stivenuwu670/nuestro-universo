@@ -11,7 +11,6 @@ const CONFIG = {
   nombreJuegoElla: "Rosita",
   fechaInicio: "2023-11-12T00:00:00", // Referencia para el contador. Confirma si fue la fecha oficial.
   firma: "Steven · Universe ♡",
-  musica: "", // Ej.: "assets/nuestra-cancion.mp3" (archivo propio o autorizado)
   fraseFinal: "En un mundo de millones de jugadores, mi mejor coincidencia fue encontrar a Rosita. Gracias por hacer de mi vida un universo contigo.",
   recuerdos: [
     { titulo: "Nos conocimos jugando", etiqueta: "PRIMEROS ENCUENTROS", simbolo: "✧", foto: "assets/fotos/roblox-01.webp", resumen: "Un juego nos cruzó en el mismo camino.", detalle: "Nunca pensé que entre tantos juegos y tantas personas pudiera conocer a alguien tan especial. No sé en qué momento exacto cambió todo, pero me alegra muchísimo que nuestros caminos se cruzaran allí." },
@@ -270,19 +269,16 @@ function initSurprises() {
   }));
 }
 
-function initAliasPuzzle() {
-  $$("[data-pair]").forEach(button => button.addEventListener("click", () => {
-    if (button.dataset.pair === "correct") {
-      $$("[data-pair]").forEach(option => { option.disabled = true; option.classList.toggle("pair-correct", option === button); });
-      $("#pairAnswer").hidden = false;
-      $("#pairQuestion").hidden = true;
-      celebrate(36);
-    } else {
-      button.classList.add("pair-wrong");
-      setTimeout(() => button.classList.remove("pair-wrong"), 750);
-      showToast("Pista: piensa en los nombres que usábamos al jugar ♡");
-    }
-  }));
+function initMemoryReveal() {
+  const button = $("#revealMemory");
+  const content = $("#memoryRevealContent");
+  if (!button || !content) return;
+  button.addEventListener("click", () => {
+    content.hidden = false;
+    button.hidden = true;
+    button.setAttribute("aria-expanded", "true");
+    celebrate(32);
+  });
 }
 
 // Contador de años/meses calendario + días/horas/minutos/segundos reales.
@@ -312,79 +308,79 @@ function updateCounter() {
   });
 }
 
-// Música original ambiental generada localmente mediante Web Audio.
-// Puede reemplazarse por un MP3 en CONFIG.musica o desde el selector de archivos.
-let audioCtx = null, ambientLoop = null, musicEnabled = false, currentNote = 0;
-let customFileUrl = null;
+// Únicamente las cinco canciones elegidas por Steven y Ashley.
+// Los archivos MP3 deben colocarse en assets/musica/ con estos nombres.
+const PLAYLIST = [
+  { titulo: "Nuestra canción especial", artista: "Un recuerdo de los dos", archivo: "assets/musica/01-recuerdo-especial.mp3" },
+  { titulo: "Labios de Cereza 2", artista: "T3R Elemento", archivo: "assets/musica/02-labios-de-cereza-2.mp3" },
+  { titulo: "My Love Mine All Mine", artista: "Mitski", archivo: "assets/musica/03-my-love-mine-all-mine.mp3" },
+  { titulo: "Tu Sancho", artista: "Fuerza Regida", archivo: "assets/musica/04-tu-sancho.mp3" },
+  { titulo: "WILDFLOWER", artista: "Billie Eilish", archivo: "assets/musica/05-wildflower.mp3" }
+];
 const audio = $("#customAudio");
-const MELODY = [392,493.88,587.33,493.88,329.63,392,493.88,392,293.66,392,440,392,329.63,293.66,261.63,329.63];
-function ambientNote() {
-  if (!audioCtx || audioCtx.state !== "running") return;
-  const at = audioCtx.currentTime;
-  const freq = MELODY[currentNote++ % MELODY.length];
-  [1, .5].forEach((factor, index) => {
-    const oscillator = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    oscillator.type = index ? "triangle" : "sine";
-    oscillator.frequency.value = freq * factor;
-    gain.gain.setValueAtTime(0, at);
-    gain.gain.linearRampToValueAtTime(index ? .013 : .029, at + .17);
-    gain.gain.exponentialRampToValueAtTime(.0001, at + 2.2);
-    oscillator.connect(gain); gain.connect(audioCtx.destination);
-    oscillator.start(at); oscillator.stop(at + 2.21);
+let selectedTrack = 0;
+let musicEnabled = false;
+
+function updateMusicUI() {
+  const item = PLAYLIST[selectedTrack];
+  const count = String(selectedTrack + 1).padStart(2, "0") + " / 05";
+  setText("#musicTrackCount", count + (musicEnabled ? " · REPRODUCIENDO" : " · EN PAUSA"));
+  setText("#musicTrackTitle", item.titulo);
+  setText("#musicTrackArtist", item.artista);
+  const play = $("#musicPlay");
+  if (play) {
+    play.textContent = musicEnabled ? "Ⅱ Pausar" : "▶ Reproducir";
+    play.setAttribute("aria-label", musicEnabled ? "Pausar canción" : "Reproducir canción");
+  }
+  $$(".song-choice").forEach(button => {
+    const active = Number(button.dataset.track) === selectedTrack;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
   });
+  const toggle = $("#soundToggle");
+  toggle.setAttribute("aria-pressed", String(musicEnabled));
+  toggle.setAttribute("aria-label", musicEnabled ? "Pausar música" : "Reproducir música");
+  setText("#soundLabel", musicEnabled ? "Pausar" : "Música");
+}
+function setMusicTrack(index, playNow = false) {
+  audio.pause();
+  selectedTrack = (index + PLAYLIST.length) % PLAYLIST.length;
+  musicEnabled = false;
+  audio.src = PLAYLIST[selectedTrack].archivo;
+  audio.load();
+  updateMusicUI();
+  if (playNow) startMusic();
 }
 async function startMusic() {
   if (musicEnabled) return;
-  if (CONFIG.musica || customFileUrl) {
-    try {
-      if (audio.src !== new URL(CONFIG.musica || customFileUrl, location.href).href) audio.src = customFileUrl || CONFIG.musica;
-      await audio.play();
-      musicEnabled = true;
-    } catch (error) {
-      showToast("No se pudo reproducir el archivo; prueba con un MP3 o usa la melodía integrada.");
-      CONFIG.musica = ""; customFileUrl = null;
-      return startMusic();
-    }
-  } else {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) { showToast("Este navegador no admite reproducción de audio."); return; }
-    try {
-      if (!audioCtx) audioCtx = new AudioContextClass();
-      await audioCtx.resume();
-      if (!ambientLoop) {
-        ambientNote();
-        ambientLoop = window.setInterval(ambientNote, 950);
-      }
-      musicEnabled = true;
-    } catch { showToast("Activa el sonido desde el navegador."); return; }
+  if (!audio.getAttribute("src")) {
+    audio.src = PLAYLIST[selectedTrack].archivo;
+    audio.load();
   }
-  $("#soundToggle").setAttribute("aria-pressed", "true");
-  $("#soundToggle").setAttribute("aria-label", "Pausar música");
-  setText("#soundLabel", "Pausar");
+  try {
+    await audio.play();
+    musicEnabled = true;
+    updateMusicUI();
+  } catch {
+    musicEnabled = false;
+    updateMusicUI();
+    showToast("Esta canción aún no está disponible en la web: falta subir su MP3.");
+  }
 }
 function stopMusic() {
   audio.pause();
-  if (ambientLoop) { clearInterval(ambientLoop); ambientLoop = null; }
-  if (audioCtx && audioCtx.state === "running") audioCtx.suspend().catch(() => {});
   musicEnabled = false;
-  $("#soundToggle").setAttribute("aria-pressed", "false");
-  $("#soundToggle").setAttribute("aria-label", "Activar música");
-  setText("#soundLabel", "Música");
+  updateMusicUI();
 }
 function initMusic() {
+  audio.loop = false;
   $("#soundToggle").addEventListener("click", () => musicEnabled ? stopMusic() : startMusic());
-  $("#changeMusicBtn").addEventListener("click", () => $("#musicPicker").click());
-  $("#musicPicker").addEventListener("change", e => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    if (customFileUrl) URL.revokeObjectURL(customFileUrl);
-    stopMusic();
-    customFileUrl = URL.createObjectURL(file);
-    CONFIG.musica = "";
-    showToast(`Canción cargada: ${file.name}`);
-    startMusic();
-  });
+  $("#musicPlay").addEventListener("click", () => musicEnabled ? stopMusic() : startMusic());
+  $("#musicPrevious").addEventListener("click", () => setMusicTrack(selectedTrack - 1, true));
+  $("#musicNext").addEventListener("click", () => setMusicTrack(selectedTrack + 1, true));
+  $$(".song-choice").forEach(button => button.addEventListener("click", () => setMusicTrack(Number(button.dataset.track), true)));
+  audio.addEventListener("ended", () => setMusicTrack(selectedTrack + 1, true));
+  updateMusicUI();
 }
 
 function showToast(message) {
@@ -437,26 +433,9 @@ initGallery();
 initStars();
 initLetter();
 initSurprises();
-initAliasPuzzle();
+initMemoryReveal();
 initMusic();
 updateCounter();
 window.setInterval(updateCounter, 1000);
 $("#celebrateBtn").addEventListener("click", () => celebrate(180));
 window.addEventListener("resize", resizeCelebration);
-
-// Selector sencillo: la música predeterminada es una melodía original.
-// La canción seleccionada se reproduce localmente solo si el usuario la proporciona.
-$$('.song-choice').forEach(button => button.addEventListener('click', () => {
-  if (button.dataset.music === 'personal') {
-    $('#musicPicker').click();
-  } else {
-    stopMusic();
-    CONFIG.musica = ''; customFileUrl = null;
-    $$('.song-choice').forEach(b => { const active = b === button; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
-    startMusic();
-  }
-}));
-$('#musicPicker').addEventListener('change', event => {
-  if (!event.target.files?.[0]) return;
-  $$('.song-choice').forEach(b => { const active = b.dataset.music === 'personal'; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
-});
