@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="responsive-fix.css?v=5">
+  <link rel="stylesheet" href="responsive-fix.css?v=6">
 </head>
 <body>
   <canvas id="space" aria-hidden="true"></canvas>
@@ -38,13 +38,18 @@
   </header>
 
   <!-- Reproductor global: permanece visible aunque se cambie de capítulo. -->
+  <aside id="musicWelcomeNotice" class="music-welcome-notice" aria-label="Activar música de bienvenida" hidden>
+    <div class="music-welcome-copy"><span>♫ MÚSICA DE BIENVENIDA</span><strong>Mama's Boy · Dominic Fike</strong><small>Algunos navegadores necesitan que toques para activar el sonido.</small></div>
+    <button type="button" id="musicWelcomePlay" class="music-welcome-play">▶ Activar música</button>
+    <button type="button" id="musicWelcomeDismiss" class="music-welcome-dismiss" aria-label="Cerrar aviso de música">×</button>
+  </aside>
   <aside id="musicDock" class="music-dock" aria-label="Música de bienvenida" hidden>
     <div class="music-dock-heading">
       <div><span>♫ AHORA SUENA</span><strong id="musicDockTitle">Mama's Boy · Dominic Fike</strong></div>
       <button type="button" id="musicDockClose" aria-label="Cerrar reproductor y detener música">×</button>
     </div>
     <div id="officialPlayerHost" class="official-player-host" hidden></div>
-    <span class="music-dock-tip">Si no suena automáticamente, toca ▶ en el video.</span>
+    <span class="music-dock-tip">Si no se escucha, pulsa ▶ en el video.</span>
   </aside>
 
   <main id="experience">
@@ -58,7 +63,7 @@
           <p class="intro-description">Comenzamos con dos avatares, un juego y una casualidad. Hoy tenemos historias que ni la mejor partida podría inventar. <strong data-bind="nombre">Ashley</strong>, este pequeño universo tiene nuestros mejores recuerdos.</p>
           <div class="intro-actions">
             <button type="button" class="button primary" data-next>Comenzar el viaje <span aria-hidden="true">↗</span></button>
-            <button type="button" class="intro-music-button" id="introMusicBtn">♫ Entrar con Mama’s Boy</button>
+            <button type="button" class="intro-music-button" id="introMusicBtn">▶ Escuchar Mama’s Boy</button>
             <span class="small-note"><span class="sparkle">✦</span> Hecho exclusivamente para ti</span>
           </div>
           <div class="date-signature"><span class="date-dash"></span><span data-bind="fechaLarga">12 de noviembre de 2023</span><span class="date-to">—</span><span>mi primer mensaje de amor</span></div>
@@ -170,19 +175,18 @@
             <span>LA BANDA SONORA DE ROSITA</span>
             <p>Ocho canciones que forman parte de nuestra historia. Escoge cuál quieres escuchar.</p>
             <div class="music-now-playing" aria-live="polite">
-              <span id="musicTrackCount">02 / 08 · LISTA PARA ESCUCHAR</span>
+              <span id="musicTrackCount">01 / 07 · LISTA PARA ESCUCHAR</span>
               <strong id="musicTrackTitle">Labios de Cereza 2</strong>
               <small id="musicTrackArtist">T3R Elemento</small>
             </div>
-            <div class="soundtrack-controls" role="group" aria-label="Escoge una de las ocho canciones">
-              <button type="button" class="song-choice" data-track="0" aria-pressed="false">01 · Pista que me compartiste</button>
-              <button type="button" class="song-choice active" data-track="1" aria-pressed="true">02 · Labios de Cereza 2</button>
-              <button type="button" class="song-choice" data-track="2" aria-pressed="false">03 · My Love Mine All Mine</button>
-              <button type="button" class="song-choice" data-track="3" aria-pressed="false">04 · Tu Sancho</button>
-              <button type="button" class="song-choice" data-track="4" aria-pressed="false">05 · WILDFLOWER</button>
-              <button type="button" class="song-choice" data-track="5" aria-pressed="false">06 · Mama's Boy</button>
-              <button type="button" class="song-choice" data-track="6" aria-pressed="false">07 · Someone to Spend Time With</button>
-              <button type="button" class="song-choice" data-track="7" aria-pressed="false">08 · Dame Amor</button>
+            <div class="soundtrack-controls" role="group" aria-label="Escoge una de las siete canciones">
+              <button type="button" class="song-choice active" data-track="0" aria-pressed="true">01 · Labios de Cereza 2</button>
+              <button type="button" class="song-choice" data-track="1" aria-pressed="false">02 · My Love Mine All Mine</button>
+              <button type="button" class="song-choice" data-track="2" aria-pressed="false">03 · Tu Sancho</button>
+              <button type="button" class="song-choice" data-track="3" aria-pressed="false">04 · WILDFLOWER</button>
+              <button type="button" class="song-choice" data-track="4" aria-pressed="false">05 · Mama's Boy</button>
+              <button type="button" class="song-choice" data-track="5" aria-pressed="false">06 · Someone to Spend Time With</button>
+              <button type="button" class="song-choice" data-track="6" aria-pressed="false">07 · Dame Amor</button>
             </div>
             <div class="music-transport">
               <button type="button" id="musicPrevious" aria-label="Canción anterior">← Anterior</button>
@@ -223,14 +227,13 @@
             <p>Toca una canción para escucharla mientras decides. Solo una guarda nuestra sorpresa especial, Rosita.</p>
           </div>
           <div class="song-guess-grid" id="songGuessOptions" role="group" aria-label="Elige nuestra canción especial">
-            <button type="button" data-song-guess="0">Pista que me compartiste <small>Un audio de nuestros recuerdos</small></button>
-            <button type="button" data-song-guess="1">Labios de Cereza 2 <small>T3R Elemento</small></button>
-            <button type="button" data-song-guess="2">My Love Mine All Mine <small>Mitski</small></button>
-            <button type="button" data-song-guess="3">Tu Sancho <small>Fuerza Regida</small></button>
-            <button type="button" data-song-guess="4">WILDFLOWER <small>Billie Eilish</small></button>
-            <button type="button" data-song-guess="5">Mama's Boy <small>Dominic Fike</small></button>
-            <button type="button" data-song-guess="6">Someone to Spend Time With <small>Los Retros</small></button>
-            <button type="button" data-song-guess="7">Dame Amor <small>Officialalex425</small></button>
+            <button type="button" data-song-guess="0">Labios de Cereza 2 <small>T3R Elemento</small></button>
+            <button type="button" data-song-guess="1">My Love Mine All Mine <small>Mitski</small></button>
+            <button type="button" data-song-guess="2">Tu Sancho <small>Fuerza Regida</small></button>
+            <button type="button" data-song-guess="3">WILDFLOWER <small>Billie Eilish</small></button>
+            <button type="button" data-song-guess="4">Mama's Boy <small>Dominic Fike</small></button>
+            <button type="button" data-song-guess="5">Someone to Spend Time With <small>Los Retros</small></button>
+            <button type="button" data-song-guess="6">Dame Amor <small>Officialalex425</small></button>
           </div>
           <div id="songGuessFeedback" class="song-guess-feedback" role="status" aria-live="polite">Elige una canción para escucharla y descubrir si es la nuestra. Puedes probar varias.</div>
           <div class="song-guess-win" id="songGuessWin" hidden>
@@ -312,8 +315,8 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="cartas.js" defer></script>
   <script src="archivo.js" defer></script>
-  <script src="app.js?v=5" defer></script>
-  <script src="archivo-ui.js?v=5" defer></script>
+  <script src="app.js?v=6" defer></script>
+  <script src="archivo-ui.js?v=6" defer></script>
   <script src="space.js" type="module"></script>
 </body>
 </html>
