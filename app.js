@@ -395,6 +395,8 @@ function updateMusicUI() {
   }
 }
 function setMusicTrack(index, playNow = false) {
+  const dock = $("#musicDock");
+  if (dock) dock.hidden = true;
   audio.pause();
   audio.removeAttribute("src");
   audio.load();
@@ -412,6 +414,9 @@ async function startMusic() {
   const item = PLAYLIST[selectedTrack];
   if (item.youtube) {
     const host = $("#officialPlayerHost");
+    const dock = $("#musicDock");
+    dock.hidden = false;
+    setText("#musicDockTitle", item.titulo + " · " + item.artista);
     host.hidden = false;
     if (videoTrack !== selectedTrack || !musicFrame()) {
       const iframe = document.createElement("iframe");
@@ -455,6 +460,17 @@ function initMusic() {
   $("#musicNext").addEventListener("click", () => setMusicTrack(selectedTrack + 1, true));
   $$(".song-choice").forEach(button => button.addEventListener("click", () => setMusicTrack(Number(button.dataset.track), true)));
   audio.addEventListener("ended", () => setMusicTrack(selectedTrack + 1, true));
+  $("#introMusicBtn").addEventListener("click", () => setMusicTrack(5, true));
+  $("#musicDockClose").addEventListener("click", () => {
+    stopMusic();
+    $("#musicDock").hidden = true;
+    $("#officialPlayerHost").replaceChildren();
+    videoTrack = null;
+  });
+  const welcome = $("#inicio .intro-actions [data-next]");
+  if (welcome) welcome.addEventListener("click", () => {
+    if (selectedTrack === 5) setMusicTrack(5, true);
+  });
   updateMusicUI();
 }
 
@@ -511,6 +527,9 @@ initSurprises();
 initMemoryReveal();
 initSongGuess();
 initMusic();
+// Intento inmediato: ciertos navegadores silencian el autoplay.
+// En ese caso puede activarse con el botón de bienvenida o el ▶ de YouTube.
+setMusicTrack(5, true);
 updateCounter();
 window.setInterval(updateCounter, 1000);
 $("#celebrateBtn").addEventListener("click", () => celebrate(180));
