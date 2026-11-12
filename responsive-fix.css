@@ -493,3 +493,161 @@
   .cosmos-planet,.cosmos-satellite,.cosmos-pulse{animation:none!important}
   .cosmos-explore .universe-memory.memory-arrived .universe-memory-copy{animation:none}
 }
+
+
+/* V3.6 · Visor individual de fotos/videos completo y activación sonora */
+/*
+  El grid anterior permitía que el tamaño intrínseco de fotos y videos
+  desbordara la primera fila del diálogo y quedara cortado. El visor ahora
+  asigna espacio explícito al medio y utiliza contain sin estirar.
+*/
+.archive-dialog[open]{
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+  position:fixed;
+  inset:0;
+  margin:auto;
+  width:min(990px,calc(100vw - 28px));
+  height:min(820px,calc(92dvh - 16px));
+  max-width:none;
+  max-height:none;
+  overflow:hidden;
+  border-radius:16px;
+}
+.archive-dialog .archive-media-view{
+  box-sizing:border-box;
+  display:flex;
+  flex:1 1 0%;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-width:0;
+  min-height:0;
+  height:0;
+  max-height:none;
+  overflow:hidden;
+  padding:clamp(10px,2vw,20px);
+  background:radial-gradient(ellipse at center,rgba(56,40,74,.9),#080712 80%);
+}
+.archive-dialog .archive-media-view .archive-full-photo,
+.archive-dialog .archive-media-view .archive-full-video{
+  position:static;
+  display:block;
+  flex:0 1 auto;
+  width:auto;
+  height:auto;
+  min-width:0;
+  min-height:0;
+  max-width:100%;
+  max-height:min(100%,calc(92dvh - 165px));
+  object-fit:contain;
+  object-position:center center;
+  border-radius:5px;
+  transform:none;
+  filter:none;
+}
+.archive-dialog .archive-overlay-caption{
+  flex:0 0 auto;
+  max-height:100px;
+  overflow-y:auto;
+  padding:10px 24px 8px;
+}
+.archive-dialog .archive-media-controls{
+  display:flex;
+  flex:0 0 auto;
+  justify-content:space-between;
+  padding:10px 16px;
+}
+.archive-dialog .archive-media-controls button{
+  min-height:39px;
+  border-radius:10px;
+}
+.archive-dialog .archive-close{position:absolute;z-index:10;right:12px;top:12px}
+.archive-dialog .archive-full-photo{background:transparent}
+
+/* Reproducción inicial: una acción del usuario cuando el navegador bloquea autoplay. */
+.music-welcome-notice[hidden]{display:none!important}
+.music-welcome-notice{
+  position:fixed;
+  z-index:30;
+  top:calc(86px + env(safe-area-inset-top,0px));
+  left:clamp(12px,3vw,42px);
+  width:min(380px,calc(100vw - 24px));
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:14px 40px 14px 16px;
+  border:1px solid rgba(246,188,226,.48);
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(39,24,59,.97),rgba(17,11,33,.98));
+  box-shadow:0 16px 45px rgba(0,0,0,.55);
+  color:#ffeafa;
+  backdrop-filter:blur(20px);
+}
+.music-welcome-copy{flex:1 1 175px;min-width:0;display:grid;gap:5px}
+.music-welcome-copy span{color:#f2b7df;font-size:9px;letter-spacing:.13em;font-weight:700}
+.music-welcome-copy strong{font-size:13px;line-height:1.2}
+.music-welcome-copy small{font-size:10px;line-height:1.5;color:#dbbdd7}
+.music-welcome-play{
+  flex:0 0 auto;
+  min-height:37px;
+  border:1px solid #f4c4e4;
+  border-radius:9px;
+  background:linear-gradient(135deg,#f6bedc,#dca2dc);
+  color:#24132e;
+  font-weight:700;
+  font-size:11px;
+  padding:9px 12px;
+  cursor:pointer;
+}
+.music-welcome-dismiss{
+  position:absolute;right:9px;top:8px;
+  width:27px;height:27px;border:0;background:transparent;
+  color:#e8c2da;font-size:22px;cursor:pointer;
+}
+.music-welcome-play:focus-visible,.music-welcome-dismiss:focus-visible{
+  outline:2px solid white;outline-offset:2px
+}
+@media(max-width:760px){
+  .archive-dialog[open]{
+    width:calc(100vw - 12px);
+    height:calc(94dvh - 6px);
+    border-radius:12px
+  }
+  .archive-dialog .archive-media-view{
+    flex:1 1 0%;
+    height:0;
+    min-height:0;
+    padding:8px 5px
+  }
+  .archive-dialog .archive-media-view .archive-full-photo,
+  .archive-dialog .archive-media-view .archive-full-video{
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:min(100%,calc(94dvh - 150px));
+    object-fit:contain
+  }
+  .archive-dialog .archive-overlay-caption{
+    max-height:90px;padding:9px 12px 6px
+  }
+  .archive-dialog .archive-media-controls{padding:8px 10px}
+  .music-welcome-notice{
+    left:10px;
+    right:10px;
+    top:calc(74px + env(safe-area-inset-top,0px));
+    width:auto;
+    max-width:380px;
+    padding:12px 36px 12px 13px;
+    gap:8px
+  }
+  .music-welcome-copy{flex-basis:148px}
+}
+@media(max-width:400px){
+  .music-welcome-notice{max-width:none}
+  .music-welcome-copy small{font-size:9px}
+  .music-welcome-play{font-size:10px}
+}
