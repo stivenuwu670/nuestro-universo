@@ -127,3 +127,10 @@ La selección musical del capítulo 04 contiene estas ocho canciones:
 8. Dame Amor — Officialalex425
 
 El sitio integra enlaces y reproductores de YouTube oficiales para las siete canciones identificadas. Los reproductores pueden requerir pulsar Play dentro del video, especialmente en celular, o abrir el enlace oficial si el video bloquea la incrustación. No se alojan grabaciones comerciales en este repositorio. La pista sin título confirmado solo puede reproducirse como audio local si su archivo está disponible y se cuenta con autorización para usarla.
+
+
+## Actualización V3.5 — Fotografías, universo y canciones
+- **Capítulo 02:** el visor de los seis recuerdos y el álbum de 48 fotografías muestran cada imagen completa sin cortar personas ni bordes. Se puede avanzar y retroceder por el álbum con los botones (o gestos táctiles).
+- **Capítulo 03:** constelación renovada con planeta decorativo, seis recuerdos con sus fotografías, avance entre estrellas e indicador de exploración. Es adaptable a móvil.
+- **Capítulo 05:** el regalo de la canción muestra otra foto de la vida real (`assets/fotos/vida-20.webp`). Al tocar una respuesta, el reproductor flotante cambia a esa canción y solicita su reproducción. La opción correcta sigue siendo *Someone to Spend Time With* de Los Retros y la canción continúa sonando después de acertar.
+- **Compatibilidad de música:** los temas identificados se sirven mediante sus reproductores de YouTube; algunos navegadores y videos no permiten autoplay con sonido, incluso tras tocar una opción. En ese caso se pulsa Play dentro del reproductor. El primer audio personal aún no está alojado en la web, por lo que esa opción no puede sonar hasta disponer de una fuente autorizada.
