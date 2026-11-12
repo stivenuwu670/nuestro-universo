@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="responsive-fix.css?v=4">
+  <link rel="stylesheet" href="responsive-fix.css?v=5">
 </head>
 <body>
   <canvas id="space" aria-hidden="true"></canvas>
@@ -104,28 +104,51 @@
       </div>
     </section>
 
+
     <!-- 3: UNIVERSO -->
     <section class="scene" id="universo" data-scene="2" aria-label="Nuestro universo" inert>
       <div class="scene-scroll section-layout cosmos-layout">
-        <div class="section-head center">
-          <div class="kicker">CAPÍTULO 03 <span>—</span> NUESTRA CONSTELACIÓN</div>
-          <h2>Hasta las estrellas<br><em>saben de nosotros.</em></h2>
-          <p>Seis estrellas, seis detalles de nuestra historia. Toca cada una para descubrir el recuerdo que guarda.</p>
+        <div class="section-head center cosmos-head">
+          <div class="kicker">CAPÍTULO 03 <span>—</span> NUESTRO UNIVERSO</div>
+          <h2>Un cielo entero<br><em>con nuestra historia.</em></h2>
+          <p>Cada estrella guarda un momento de Universe y Rosita, Steven y Ashley. Descúbrelas una a una.</p>
+          <div class="cosmos-discovery"><span class="cosmos-pulse" aria-hidden="true"></span><span id="cosmosExplored">1 DE 6 ESTRELLAS DESCUBIERTAS</span></div>
         </div>
-        <div class="constellation" id="constellation">
-          <div class="constellation-halo" aria-hidden="true"></div>
-          <svg class="constellation-lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M115 282 L292 100 L493 242 L702 84 L872 242 L713 379 L493 242 L302 393 L115 282"/>
-          </svg>
-          <button type="button" class="cosmic-point selected" data-star="0" style="--x:11.5%;--y:61.3%;--s:15px" aria-label="Ver estrella uno"><span class="star-glint"></span><small>01</small></button>
-          <button type="button" class="cosmic-point" data-star="1" style="--x:29.2%;--y:21.7%;--s:12px" aria-label="Ver estrella dos"><span class="star-glint"></span><small>02</small></button>
-          <button type="button" class="cosmic-point" data-star="2" style="--x:49.3%;--y:52.6%;--s:18px" aria-label="Ver estrella tres"><span class="star-glint"></span><small>03</small></button>
-          <button type="button" class="cosmic-point" data-star="3" style="--x:70.2%;--y:18.3%;--s:13px" aria-label="Ver estrella cuatro"><span class="star-glint"></span><small>04</small></button>
-          <button type="button" class="cosmic-point" data-star="4" style="--x:87.2%;--y:52.6%;--s:12px" aria-label="Ver estrella cinco"><span class="star-glint"></span><small>05</small></button>
-          <button type="button" class="cosmic-point" data-star="5" style="--x:71.3%;--y:82.4%;--s:16px" aria-label="Ver estrella seis"><span class="star-glint"></span><small>06</small></button>
-          <div class="universe-memory" id="universeMemory" aria-live="polite"><span class="universe-kicker">ESTRELLA 01 / 06</span><h3>Donde todo comenzó</h3><p>Entre tantas casualidades del universo, la más bonita fue encontrarte.</p></div>
-          <div class="universe-coordinates" aria-hidden="true">RA 23h 11m 12s &nbsp; DEC +∞</div>
+        <div class="cosmos-explore">
+          <div class="constellation" id="constellation" role="group" aria-label="Constelación de seis recuerdos interactivos">
+            <div class="constellation-halo" aria-hidden="true"></div>
+            <div class="cosmos-planet" aria-hidden="true"><span class="cosmos-planet-core"></span><span class="cosmos-planet-ring"></span><span class="cosmos-planet-ring ring-two"></span></div>
+            <div class="cosmos-satellite cosmos-satellite-a" aria-hidden="true"></div>
+            <div class="cosmos-satellite cosmos-satellite-b" aria-hidden="true"></div>
+            <svg class="constellation-lines" viewBox="0 0 1000 460" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M115 282 L292 100 L493 242 L702 84 L872 242 L713 379 L493 242 L302 393 L115 282"/>
+            </svg>
+            <button type="button" class="cosmic-point selected discovered" data-star="0" style="--x:11.5%;--y:61.3%;--s:15px" aria-label="Estrella 1: La primera partida" aria-pressed="true"><span class="star-glint"></span><small>01</small></button>
+            <button type="button" class="cosmic-point" data-star="1" style="--x:29.2%;--y:21.7%;--s:12px" aria-label="Estrella 2: Universe y Rosita" aria-pressed="false"><span class="star-glint"></span><small>02</small></button>
+            <button type="button" class="cosmic-point" data-star="2" style="--x:49.3%;--y:52.6%;--s:18px" aria-label="Estrella 3: Nuestro primer mensaje" aria-pressed="false"><span class="star-glint"></span><small>03</small></button>
+            <button type="button" class="cosmic-point" data-star="3" style="--x:70.2%;--y:18.3%;--s:13px" aria-label="Estrella 4: Nuestros momentos" aria-pressed="false"><span class="star-glint"></span><small>04</small></button>
+            <button type="button" class="cosmic-point" data-star="4" style="--x:87.2%;--y:52.6%;--s:12px" aria-label="Estrella 5: Aprender juntos" aria-pressed="false"><span class="star-glint"></span><small>05</small></button>
+            <button type="button" class="cosmic-point" data-star="5" style="--x:71.3%;--y:82.4%;--s:16px" aria-label="Estrella 6: Nuestro presente" aria-pressed="false"><span class="star-glint"></span><small>06</small></button>
+            <div class="universe-coordinates" aria-hidden="true">U ✦ R &nbsp; · &nbsp; DESDE 2023</div>
+          </div>
+          <article class="universe-memory" id="universeMemory" aria-live="polite">
+            <figure class="universe-memory-photo">
+              <img id="universeMemoryImage" src="assets/fotos/roblox-01.webp" alt="Universe y Rosita en Roblox" loading="lazy">
+              <figcaption id="universeMemoryTag">DONDE COMENZÓ NUESTRA HISTORIA</figcaption>
+            </figure>
+            <div class="universe-memory-copy">
+              <span class="universe-kicker">ESTRELLA 01 / 06</span>
+              <h3>La primera partida</h3>
+              <p>El universo tenía millones de caminos; uno de ellos me llevó a conocerte en un juego.</p>
+              <div class="universe-memory-actions">
+                <button type="button" id="universePrevious" aria-label="Ver estrella anterior">←</button>
+                <span id="universeProgress">01 — 06</span>
+                <button type="button" id="universeNext">Siguiente estrella →</button>
+              </div>
+            </div>
+          </article>
         </div>
+        <p class="cosmos-footnote">✧ Haz clic en las estrellas o utiliza las flechas para recorrer nuestros seis recuerdos.</p>
       </div>
     </section>
 
@@ -197,7 +220,7 @@
         <section class="song-guess" id="songGuess" aria-labelledby="songGuessHeading">
           <div class="song-guess-header"><span class="song-guess-overline">REGALO 04 · NUESTRA BANDA SONORA</span>
             <h3 id="songGuessHeading">¿Cuál es nuestra canción especial?</h3>
-            <p>Entre todas estas canciones hay una que siempre me hace pensar en nosotros. ¿La recuerdas, Rosita?</p>
+            <p>Toca una canción para escucharla mientras decides. Solo una guarda nuestra sorpresa especial, Rosita.</p>
           </div>
           <div class="song-guess-grid" id="songGuessOptions" role="group" aria-label="Elige nuestra canción especial">
             <button type="button" data-song-guess="0">Pista que me compartiste <small>Un audio de nuestros recuerdos</small></button>
@@ -209,9 +232,9 @@
             <button type="button" data-song-guess="6">Someone to Spend Time With <small>Los Retros</small></button>
             <button type="button" data-song-guess="7">Dame Amor <small>Officialalex425</small></button>
           </div>
-          <div id="songGuessFeedback" class="song-guess-feedback" role="status" aria-live="polite">Toca el nombre de una canción para responder. Puedes intentarlo las veces que quieras.</div>
+          <div id="songGuessFeedback" class="song-guess-feedback" role="status" aria-live="polite">Elige una canción para escucharla y descubrir si es la nuestra. Puedes probar varias.</div>
           <div class="song-guess-win" id="songGuessWin" hidden>
-            <img src="assets/fotos/vida-05.webp" alt="Un recuerdo de Steven y Ashley juntos" loading="lazy">
+            <img src="assets/fotos/vida-20.webp" alt="Steven y Ashley juntos, un recuerdo de la vida real" loading="lazy">
             <div>
               <span>✦ NUESTRA CANCIÓN DESCUBIERTA</span>
               <h4>Someone to Spend Time With — Los Retros</h4>
@@ -289,8 +312,8 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="cartas.js" defer></script>
   <script src="archivo.js" defer></script>
-  <script src="app.js?v=4" defer></script>
-  <script src="archivo-ui.js" defer></script>
+  <script src="app.js?v=5" defer></script>
+  <script src="archivo-ui.js?v=5" defer></script>
   <script src="space.js" type="module"></script>
 </body>
 </html>
