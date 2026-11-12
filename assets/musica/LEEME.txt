@@ -1,11 +1,15 @@
-NUESTRO UNIVERSO V3.2 — PLAYLIST DE ASHLEY
+NUESTRO UNIVERSO V3.3 — LA BANDA SONORA DE ASHLEY
 
-Solo estas 5 pistas. Colócalas aquí con los nombres exactos si tienes permiso para distribuirlas:
-01-recuerdo-especial.mp3
-02-labios-de-cereza-2.mp3
-03-my-love-mine-all-mine.mp3
-04-tu-sancho.mp3
-05-wildflower.mp3
+El reproductor y el juego muestran exactamente ocho canciones:
+01 - Pista que me compartiste (título por confirmar; archivo original "m")
+02 - Labios de Cereza 2 — T3R Elemento
+03 - My Love Mine All Mine — Mitski
+04 - Tu Sancho — Fuerza Regida
+05 - WILDFLOWER — Billie Eilish
+06 - Mama's Boy — Dominic Fike
+07 - Someone to Spend Time With — Los Retros (NUESTRA CANCIÓN)
+08 - Dame Amor — Officialalex425
 
-No se incluyen archivos de música comercial en el repositorio.
-Publicarlos en GitHub Pages requiere los derechos de distribución correspondientes.
+El sitio abre versiones oficiales mediante YouTube; los MP3 comerciales no se almacenan en GitHub.
+El archivo local opcional de la pista 01 se llama 01-recuerdo-especial.mp3.
+Publicar grabaciones requiere autorización de sus titulares.
