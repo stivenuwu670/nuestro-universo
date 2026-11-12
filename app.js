@@ -253,19 +253,51 @@ function completeLetter() {
   letterFinished = true;
 }
 
+function registerSecret(id) {
+  if (secrets.has(id)) return;
+  secrets.add(id);
+  setText("#secretCount", secrets.size + " / 4");
+  if (secrets.size >= 4) {
+    $("#secretStatus").hidden = true;
+    $("#secretUnlocked").hidden = false;
+    celebrate(45);
+  }
+}
 function initSurprises() {
   $$(".surprise-card").forEach(button => button.addEventListener("click", () => {
     const id = Number(button.dataset.surprise);
     if (secrets.has(id)) return;
-    secrets.add(id);
     button.classList.add("revealed");
     button.setAttribute("aria-pressed", "true");
-    setText("#secretCount", `${secrets.size} / 3`);
-    if (secrets.size === 3) {
-      $("#secretStatus").hidden = true;
-      $("#secretUnlocked").hidden = false;
-      celebrate(45);
+    registerSecret(id);
+  }));
+}
+function initSongGuess() {
+  const buttons = $$("[data-song-guess]");
+  const feedback = $("#songGuessFeedback");
+  const result = $("#songGuessWin");
+  if (!feedback || !result) return;
+  let wrongAttempts = 0;
+  buttons.forEach(button => button.addEventListener("click", () => {
+    if (secrets.has(3)) return;
+    if (Number(button.dataset.songGuess) !== 6) {
+      wrongAttempts++;
+      button.classList.add("guess-incorrect");
+      feedback.textContent = wrongAttempts < 2
+        ? "Esta también está en nuestra lista, pero hay otra que es solo nuestra. Intenta de nuevo ♡"
+        : "Pista: su nombre habla de tener alguien especial con quien compartir el tiempo.";
+      return;
     }
+    buttons.forEach(item => {
+      item.disabled = true;
+      item.classList.toggle("guess-correct", item === button);
+    });
+    feedback.textContent = "¡Sí, Rosita! Esa es nuestra canción especial. ♡";
+    result.hidden = false;
+    registerSecret(3);
+    celebrate(78);
+    if (typeof setMusicTrack === "function") setMusicTrack(6, false);
+    result.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
   }));
 }
 
@@ -308,29 +340,41 @@ function updateCounter() {
   });
 }
 
-// Únicamente las cinco canciones elegidas por Steven y Ashley.
-// Los archivos MP3 deben colocarse en assets/musica/ con estos nombres.
+// Solo los ocho temas que Steven seleccionó. La web reproduce enlaces oficiales
+// sin volver a publicar archivos MP3 comerciales en un repositorio público.
 const PLAYLIST = [
-  { titulo: "Nuestra canción especial", artista: "Un recuerdo de los dos", archivo: "assets/musica/01-recuerdo-especial.mp3" },
-  { titulo: "Labios de Cereza 2", artista: "T3R Elemento", archivo: "assets/musica/02-labios-de-cereza-2.mp3" },
-  { titulo: "My Love Mine All Mine", artista: "Mitski", archivo: "assets/musica/03-my-love-mine-all-mine.mp3" },
-  { titulo: "Tu Sancho", artista: "Fuerza Regida", archivo: "assets/musica/04-tu-sancho.mp3" },
-  { titulo: "WILDFLOWER", artista: "Billie Eilish", archivo: "assets/musica/05-wildflower.mp3" }
+  { titulo: "Pista que me compartiste", artista: "Audio personal sin título confirmado", archivo: "assets/musica/01-recuerdo-especial.mp3" },
+  { titulo: "Labios de Cereza 2", artista: "T3R Elemento", youtube: "nRsKRKaX3HY" },
+  { titulo: "My Love Mine All Mine", artista: "Mitski", youtube: "CwGbMYLjIpQ" },
+  { titulo: "Tu Sancho", artista: "Fuerza Regida", youtube: "PXSmPTX-SgM" },
+  { titulo: "WILDFLOWER", artista: "Billie Eilish", youtube: "l08Zw-RY__Q" },
+  { titulo: "Mama's Boy", artista: "Dominic Fike", youtube: "KSXP1DRnTKc" },
+  { titulo: "Someone to Spend Time With", artista: "Los Retros", youtube: "KFjmq0rEyDw" },
+  { titulo: "Dame Amor", artista: "Officialalex425", youtube: "N4IALVjPCDE" }
 ];
 const audio = $("#customAudio");
-let selectedTrack = 0;
+let selectedTrack = 1;
 let musicEnabled = false;
+let videoTrack = null;
 
+function musicFrame() {
+  return $("#officialPlayerHost iframe");
+}
+function sendVideoCommand(command) {
+  const frame = musicFrame();
+  if (!frame || !frame.contentWindow) return;
+  frame.contentWindow.postMessage(JSON.stringify({ event: "command", func: command, args: [] }), "https://www.youtube-nocookie.com");
+}
 function updateMusicUI() {
   const item = PLAYLIST[selectedTrack];
-  const count = String(selectedTrack + 1).padStart(2, "0") + " / 05";
-  setText("#musicTrackCount", count + (musicEnabled ? " · REPRODUCIENDO" : " · EN PAUSA"));
+  const counter = String(selectedTrack + 1).padStart(2, "0") + " / " + String(PLAYLIST.length).padStart(2, "0");
+  setText("#musicTrackCount", counter + (musicEnabled ? " · REPRODUCTOR ABIERTO" : " · LISTA PARA ESCUCHAR"));
   setText("#musicTrackTitle", item.titulo);
   setText("#musicTrackArtist", item.artista);
   const play = $("#musicPlay");
   if (play) {
-    play.textContent = musicEnabled ? "Ⅱ Pausar" : "▶ Reproducir";
-    play.setAttribute("aria-label", musicEnabled ? "Pausar canción" : "Reproducir canción");
+    play.textContent = musicEnabled ? "Ⅱ Pausar" : "▶ Escuchar";
+    play.setAttribute("aria-label", musicEnabled ? "Pausar canción" : "Escuchar canción");
   }
   $$(".song-choice").forEach(button => {
     const active = Number(button.dataset.track) === selectedTrack;
@@ -339,36 +383,68 @@ function updateMusicUI() {
   });
   const toggle = $("#soundToggle");
   toggle.setAttribute("aria-pressed", String(musicEnabled));
-  toggle.setAttribute("aria-label", musicEnabled ? "Pausar música" : "Reproducir música");
+  toggle.setAttribute("aria-label", musicEnabled ? "Pausar música" : "Escuchar música");
   setText("#soundLabel", musicEnabled ? "Pausar" : "Música");
+  const link = $("#musicOpenOfficial");
+  if (item.youtube) {
+    link.hidden = false;
+    link.href = "https://www.youtube.com/watch?v=" + item.youtube;
+  } else {
+    link.hidden = true;
+    link.removeAttribute("href");
+  }
 }
 function setMusicTrack(index, playNow = false) {
   audio.pause();
+  audio.removeAttribute("src");
+  audio.load();
+  const host = $("#officialPlayerHost");
+  host.replaceChildren();
+  host.hidden = true;
+  videoTrack = null;
   selectedTrack = (index + PLAYLIST.length) % PLAYLIST.length;
   musicEnabled = false;
-  audio.src = PLAYLIST[selectedTrack].archivo;
-  audio.load();
   updateMusicUI();
   if (playNow) startMusic();
 }
 async function startMusic() {
   if (musicEnabled) return;
-  if (!audio.getAttribute("src")) {
-    audio.src = PLAYLIST[selectedTrack].archivo;
-    audio.load();
-  }
-  try {
-    await audio.play();
+  const item = PLAYLIST[selectedTrack];
+  if (item.youtube) {
+    const host = $("#officialPlayerHost");
+    host.hidden = false;
+    if (videoTrack !== selectedTrack || !musicFrame()) {
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + item.youtube + "?autoplay=1&playsinline=1&rel=0&enablejsapi=1";
+      iframe.title = "Reproductor oficial: " + item.titulo;
+      iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.setAttribute("loading", "lazy");
+      host.replaceChildren(iframe);
+      videoTrack = selectedTrack;
+    } else {
+      sendVideoCommand("playVideo");
+    }
     musicEnabled = true;
     updateMusicUI();
-  } catch {
-    musicEnabled = false;
-    updateMusicUI();
-    showToast("Esta canción aún no está disponible en la web: falta subir su MP3.");
+  } else {
+    // El audio personal original solo suena si su archivo está disponible en esta instalación.
+    audio.src = item.archivo;
+    try {
+      await audio.play();
+      musicEnabled = true;
+      updateMusicUI();
+    } catch {
+      audio.removeAttribute("src");
+      musicEnabled = false;
+      updateMusicUI();
+      showToast("El audio personal todavía no está publicado. Escoge otra canción de la lista.");
+    }
   }
 }
 function stopMusic() {
   audio.pause();
+  sendVideoCommand("pauseVideo");
   musicEnabled = false;
   updateMusicUI();
 }
@@ -434,6 +510,7 @@ initStars();
 initLetter();
 initSurprises();
 initMemoryReveal();
+initSongGuess();
 initMusic();
 updateCounter();
 window.setInterval(updateCounter, 1000);
