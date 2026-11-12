@@ -419,7 +419,6 @@ async function startMusic() {
       iframe.title = "Reproductor oficial: " + item.titulo;
       iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share");
       iframe.setAttribute("allowfullscreen", "");
-      iframe.setAttribute("loading", "lazy");
       host.replaceChildren(iframe);
       videoTrack = selectedTrack;
     } else {
