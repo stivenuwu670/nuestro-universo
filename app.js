@@ -61,7 +61,11 @@ function bindConfig() {
 
 function goToScene(index) {
   const next = Math.max(0, Math.min(5, Number(index)));
-  if (next === sceneIndex) return;
+  if (next === sceneIndex) {
+    const currentScroll = document.querySelector(".scene.active .scene-scroll");
+    if (currentScroll) currentScroll.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    return;
+  }
   const scenes = $$(".scene");
   scenes[sceneIndex].classList.remove("active");
   scenes[sceneIndex].setAttribute("inert", "");
@@ -69,7 +73,9 @@ function goToScene(index) {
   sceneIndex = next;
   scenes[sceneIndex].removeAttribute("inert");
   scenes[sceneIndex].classList.add("active");
-  $$(".chapter-dot").forEach((button, i) => {
+  const nextScroll = scenes[sceneIndex].querySelector(".scene-scroll");
+  if (nextScroll) nextScroll.scrollTop = 0;
+  $(".chapter-dot").forEach((button, i) => {
     const active = i === sceneIndex;
     button.classList.toggle("active", active);
     if (active) button.setAttribute("aria-current", "step");
