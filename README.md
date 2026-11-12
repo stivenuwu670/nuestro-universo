@@ -134,3 +134,14 @@ El sitio integra enlaces y reproductores de YouTube oficiales para las siete can
 - **Capítulo 03:** constelación renovada con planeta decorativo, seis recuerdos con sus fotografías, avance entre estrellas e indicador de exploración. Es adaptable a móvil.
 - **Capítulo 05:** el regalo de la canción muestra otra foto de la vida real (`assets/fotos/vida-20.webp`). Al tocar una respuesta, el reproductor flotante cambia a esa canción y solicita su reproducción. La opción correcta sigue siendo *Someone to Spend Time With* de Los Retros y la canción continúa sonando después de acertar.
 - **Compatibilidad de música:** los temas identificados se sirven mediante sus reproductores de YouTube; algunos navegadores y videos no permiten autoplay con sonido, incluso tras tocar una opción. En ese caso se pulsa Play dentro del reproductor. El primer audio personal aún no está alojado en la web, por lo que esa opción no puede sonar hasta disponer de una fuente autorizada.
+
+
+## Actualización V3.6 — Audio y visor de recuerdos
+
+- Se eliminó la opción `Pista que me compartiste`: faltaba su archivo musical en el sitio publicado. Quedan **7 canciones** en el reproductor y en el reto musical.
+- `Mama's Boy` continúa configurada como canción de apertura y se intenta reproducir al cargar. En navegadores que bloquean autoplay con sonido, aparece un aviso con **Activar música**; también funcionan el botón de la bienvenida y el control Música.
+- El álbum de **48 fotografías y 9 videos** ahora utiliza un visor individual con diseño flexible y un cálculo en JavaScript de las dimensiones nativas del archivo y el espacio disponible. Las fotografías verticales, panorámicas y los videos se ajustan completos sin recortes ni ampliaciones forzadas.
+- Los cambios incluyen pantallas pequeñas, rotación del teléfono, controles para avanzar y retroceder y actualización automática del tamaño del visor.
+- La canción especial sigue siendo **Someone to Spend Time With**, de Los Retros; como ahora hay 7 opciones, su índice interno es 5.
+
+**Nota:** Los navegadores pueden impedir sonido sin una interacción del visitante. Ninguna configuración HTML puede garantizar reproducción automática audible en todos ellos; la activación con un toque es la alternativa compatible.
