@@ -96,3 +96,18 @@ Nuestro_Universo_V3/
 ```
 
 Diseñado para escritorio y dispositivos móviles. No depende de servicios externos para el contenido personal: solo el efecto Three.js y las fuentes web intentan descargarse desde Internet; tienen alternativas locales.
+
+
+## Actualización V3.2 — Música y sorpresa
+- La trivia sobre los nombres de Roblox fue sustituida por un recuerdo romántico interactivo con una fotografía.
+- La lista de reproducción solo muestra las cinco pistas seleccionadas por Steven.
+- Los archivos musicales no están incluidos en el repositorio y deben colocarse, si se tienen los derechos para publicarlos, en \`assets/musica/\` con estos nombres:
+  1. \`01-recuerdo-especial.mp3\` (archivo compartido como «m»)
+  2. \`02-labios-de-cereza-2.mp3\`
+  3. \`03-my-love-mine-all-mine.mp3\`
+  4. \`04-tu-sancho.mp3\`
+  5. \`05-wildflower.mp3\`
+- El reproductor no reproduce música generada ni otras pistas y avanza automáticamente a la siguiente canción.
+- Por las restricciones de los navegadores, la reproducción comienza después de una interacción del visitante.
+
+**Derechos de autor:** Publicar grabaciones comerciales en GitHub Pages requiere permiso o licencia. No se recomienda alojar archivos sin autorización en un repositorio público.
