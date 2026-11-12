@@ -236,3 +236,260 @@
   .intro-actions{gap:10px}
 }
 @media(prefers-reduced-motion:reduce){.intro-music-button{transition:none}}
+
+
+/* V3.5 — Fotos completas, universo interactivo y elección musical */
+
+/* Visor de recuerdos destacados: las fotos no se recortan. */
+.memory-dialog{
+  box-sizing:border-box;
+  width:min(900px,calc(100vw - 28px));
+  max-height:calc(100dvh - 34px);
+  padding:clamp(19px,3vw,30px);
+  border-radius:17px;
+  overflow-x:hidden;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:#a779b0 #211629;
+}
+.memory-dialog h3{font-size:clamp(29px,3.5vw,43px);margin:11px 0 15px;padding-right:32px}
+.memory-dialog .modal-memory-image{
+  display:block;
+  box-sizing:border-box;
+  width:100%;
+  height:auto;
+  max-height:min(62dvh,760px);
+  min-height:0;
+  object-fit:contain;
+  object-position:center;
+  margin:9px auto 15px;
+  padding:7px;
+  border:1px solid rgba(244,195,224,.3);
+  border-radius:12px;
+  background:radial-gradient(ellipse at center,#302242 0%,#0c0a1d 85%);
+}
+.memory-dialog p{font-size:clamp(12px,1.4vw,14px);line-height:1.7}
+.memory-dialog .modal-bottom{margin-top:18px}
+
+/* Visor del álbum completo: mantiene la fotografía entera y sus controles. */
+.archive-dialog[open]{
+  box-sizing:border-box;
+  display:grid;
+  grid-template-rows:minmax(0,1fr) auto auto;
+  width:min(1140px,calc(100vw - 24px));
+  max-width:none;
+  height:min(95dvh,960px);
+  max-height:none;
+  overflow:hidden;
+}
+.archive-dialog:not([open]){display:none}
+.archive-dialog .archive-media-view{
+  box-sizing:border-box;
+  height:auto;
+  min-height:0;
+  max-height:none;
+  padding:clamp(6px,1.5vw,16px);
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+}
+.archive-dialog .archive-full-photo{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+.archive-dialog .archive-full-video{
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+.archive-dialog .archive-overlay-caption{min-height:0;padding:10px clamp(14px,3vw,28px) 7px}
+.archive-dialog .archive-overlay-caption h3{margin:4px 0 3px;font-size:clamp(18px,2.6vw,27px)}
+.archive-dialog .archive-overlay-caption p{margin:0;font-size:11px;line-height:1.5}
+.archive-dialog .archive-media-controls{flex:0 0 auto}
+.archive-dialog .archive-close{z-index:9;box-shadow:0 2px 15px #0008}
+
+/* Capítulo 03: lienzo cósmico con seis estrellas y un panel de memoria. */
+.cosmos-layout{padding-top:clamp(22px,3.5vh,40px)}
+.cosmos-head{max-width:740px;margin:0 auto 22px!important}
+.cosmos-head p{margin-left:auto;margin-right:auto}
+.cosmos-discovery{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:9px 16px;margin-top:13px;
+  border:1px solid rgba(249,182,230,.24);border-radius:50px;
+  color:#f3c9e8;background:rgba(221,128,195,.09);
+  font-size:9px;font-weight:700;letter-spacing:.13em
+}
+.cosmos-pulse{display:block;width:7px;height:7px;border-radius:50%;background:#f5c8e8;box-shadow:0 0 12px #f5b2dc;animation:cosmosTwinkle 2.4s ease-in-out infinite alternate}
+@keyframes cosmosTwinkle{to{opacity:.4;transform:scale(.8)}}
+.cosmos-explore{
+  width:min(1200px,100%);margin:0 auto;
+  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(285px,.9fr);
+  align-items:stretch;gap:clamp(14px,2.6vw,30px)
+}
+.cosmos-explore .constellation{
+  box-sizing:border-box;
+  width:100%;min-width:0;
+  height:clamp(355px,48vh,520px);
+  margin:0;position:relative;isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(241,178,234,.21);
+  border-radius:24px;
+  background:
+    radial-gradient(ellipse at 52% 47%,rgba(124,71,178,.3),transparent 42%),
+    radial-gradient(ellipse at 22% 23%,rgba(55,78,174,.18),transparent 50%),
+    radial-gradient(ellipse at 90% 90%,rgba(203,67,173,.13),transparent 58%),
+    #09071b;
+  box-shadow:inset 0 0 110px rgba(0,0,0,.35),0 22px 65px #0004;
+}
+.cosmos-explore .constellation::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.72;
+  background-image:
+    radial-gradient(1px 1px at 11% 12%,#fff 85%,transparent),
+    radial-gradient(2px 2px at 38% 83%,#f4d5ff 70%,transparent),
+    radial-gradient(1px 1px at 77% 12%,#eac3ff 90%,transparent),
+    radial-gradient(1px 1px at 53% 17%,#fff 90%,transparent),
+    radial-gradient(2px 2px at 90% 76%,#ffd5f4 75%,transparent),
+    radial-gradient(1px 1px at 18% 81%,#fff 90%,transparent);
+  background-size:103px 83px,173px 113px,127px 149px,213px 171px,151px 103px,199px 125px;
+}
+.cosmos-explore .constellation-halo{z-index:0}
+.cosmos-explore .constellation-lines{z-index:2;pointer-events:none}
+.cosmos-explore .constellation-lines path{stroke:rgba(244,196,248,.5);stroke-width:1.3;stroke-dasharray:4 5;filter:drop-shadow(0 0 6px rgba(238,162,253,.36))}
+.cosmos-explore .cosmic-point{z-index:5;cursor:pointer}
+.cosmos-explore .cosmic-point:focus-visible{outline:2px solid #f7c0e3;outline-offset:5px}
+.cosmos-explore .cosmic-point small{color:#e5bfec}
+.cosmos-explore .cosmic-point.discovered small{color:#fff6fe}
+.cosmos-explore .cosmic-point.discovered .star-glint{box-shadow:0 0 14px rgba(255,231,254,.7),0 0 38px rgba(210,126,248,.6)}
+.cosmos-planet{
+  position:absolute;z-index:1;pointer-events:none;
+  width:clamp(124px,20vw,190px);aspect-ratio:1;
+  left:50%;top:48%;transform:translate(-50%,-50%);
+  border-radius:50%;
+  filter:drop-shadow(0 0 27px rgba(177,92,223,.5));
+  animation:cosmicFloat 10s ease-in-out infinite alternate
+}
+.cosmos-planet-core{
+  position:absolute;inset:13%;border-radius:50%;
+  background:radial-gradient(circle at 26% 25%,#f9d9f5 0%,#bb78d9 13%,#693ca0 38%,#2a1e64 67%,#100e34 90%);
+  box-shadow:inset -17px -24px 30px #080822b5,inset 12px 10px 30px #fff4,inset 0 0 7px #ffbae8;
+}
+.cosmos-planet-ring{
+  position:absolute;z-index:0;left:-20%;right:-20%;top:38%;height:24%;
+  border:2px solid rgba(254,199,244,.46);border-radius:50%;
+  transform:rotate(-23deg);
+  box-shadow:0 0 16px rgba(229,155,240,.33)
+}
+.cosmos-planet-ring.ring-two{top:34%;left:-13%;right:-13%;border-color:rgba(161,166,255,.2);transform:rotate(37deg)}
+.cosmos-satellite{
+  position:absolute;z-index:1;width:5px;height:5px;pointer-events:none;
+  background:#fad8ff;border-radius:50%;box-shadow:0 0 12px 4px #b985f6;
+  animation:cosmosTwinkle 2s alternate infinite
+}
+.cosmos-satellite-a{left:23%;top:77%}
+.cosmos-satellite-b{left:79%;top:29%;animation-delay:1s}
+@keyframes cosmicFloat{to{transform:translate(-50%,-45%) rotate(4deg)}}
+.cosmos-explore .universe-coordinates{z-index:3;bottom:15px;right:15px;width:auto;font-size:9px;letter-spacing:.15em}
+.cosmos-explore .universe-memory{
+  box-sizing:border-box;
+  position:relative;inset:auto;
+  display:flex;flex-direction:column;
+  min-width:0;max-width:none;width:100%;
+  height:100%;padding:14px;
+  border:1px solid rgba(252,181,228,.29);border-radius:21px;
+  background:linear-gradient(155deg,rgba(61,35,82,.88),rgba(15,12,37,.96));
+  box-shadow:0 20px 60px #0004;
+  backdrop-filter:blur(12px);transition:none;
+}
+.cosmos-explore .universe-memory-photo{
+  position:relative;width:100%;height:clamp(150px,23vh,235px);
+  flex:0 0 auto;margin:0;
+  overflow:hidden;border-radius:13px;
+  background:radial-gradient(ellipse at center,#36224a,#0d0a1d);
+}
+.cosmos-explore .universe-memory-photo img{
+  display:block;width:100%;height:100%;object-fit:contain;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.32))
+}
+.cosmos-explore .universe-memory-photo figcaption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:13px 13px 10px;
+  color:#fff1fa;font-size:8px;font-weight:700;letter-spacing:.15em;
+  background:linear-gradient(transparent,rgba(9,5,24,.94))
+}
+.cosmos-explore .universe-memory-copy{
+  display:flex;flex:1;min-height:0;flex-direction:column;align-items:stretch;padding:16px 7px 3px
+}
+.cosmos-explore .universe-kicker{font-weight:700;font-size:9px;color:#f6c2e5}
+.cosmos-explore .universe-memory h3{font-size:clamp(24px,2.7vw,31px);line-height:1.2;margin:9px 0}
+.cosmos-explore .universe-memory p{font-size:12px;line-height:1.75;color:#d8c5df;margin-bottom:15px}
+.universe-memory-actions{
+  margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding-top:11px;border-top:1px solid rgba(248,193,230,.2)
+}
+.universe-memory-actions button{
+  min-height:36px;padding:9px 12px;border-radius:8px;
+  border:1px solid rgba(249,195,230,.3);
+  background:rgba(241,158,210,.11);color:#ffe6f5;
+  cursor:pointer;font-size:11px
+}
+.universe-memory-actions button:hover{background:rgba(237,144,200,.25)}
+.universe-memory-actions button:focus-visible{outline:2px solid #f6c5e7;outline-offset:2px}
+.universe-memory-actions span{font-size:10px;letter-spacing:.11em;color:#dfa8d4;white-space:nowrap}
+.cosmos-footnote{text-align:center;margin:16px 0 25px;font-size:10px;color:#c7b1d1;line-height:1.7}
+.cosmos-explore .universe-memory.memory-arrived .universe-memory-copy{animation:universeSlideIn .3s ease both}
+@keyframes universeSlideIn{from{opacity:.45;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* El recuerdo que se revela al acertar usa otra foto real, sin recortes. */
+.song-guess-grid button.guess-listening{border-color:rgba(250,211,238,.84);box-shadow:inset 0 0 0 1px rgba(255,221,245,.24)}
+.song-guess-win img{
+  max-width:100%;max-height:300px;height:auto;aspect-ratio:auto;
+  object-fit:contain;background:#21142e;padding:4px
+}
+
+@media(max-width:1050px){
+  .cosmos-explore{grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr)}
+  .cosmos-explore .constellation{height:clamp(365px,47vh,480px)}
+}
+@media(max-width:760px){
+  .memory-dialog{width:calc(100vw - 16px);max-height:calc(100dvh - 16px);padding:17px 14px}
+  .memory-dialog h3{font-size:clamp(27px,8vw,37px)}
+  .memory-dialog .modal-memory-image{max-height:57dvh;padding:3px;margin:7px auto 12px}
+  .archive-dialog[open]{width:calc(100vw - 8px);height:calc(100dvh - 12px);border-radius:12px}
+  .archive-dialog .archive-media-view{padding:8px 4px;min-height:0;height:auto}
+  .archive-dialog .archive-overlay-caption{padding:9px 13px 6px}
+  .archive-dialog .archive-overlay-caption h3{font-size:19px}
+  .archive-dialog .archive-media-controls{padding:8px 10px}
+  .cosmos-head{margin-bottom:14px!important}
+  .cosmos-layout{padding-top:24px}
+  .cosmos-explore{grid-template-columns:1fr;gap:14px}
+  .cosmos-explore .constellation{height:clamp(290px,38vh,385px);border-radius:16px}
+  .cosmos-planet{width:clamp(123px,30vw,176px)}
+  .cosmos-explore .universe-memory{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:13px;padding:12px;border-radius:16px}
+  .cosmos-explore .universe-memory-photo{height:100%;min-height:205px}
+  .cosmos-explore .universe-memory-copy{padding:9px 3px 3px}
+  .cosmos-explore .universe-memory h3{font-size:clamp(23px,5.4vw,30px)}
+  .cosmos-explore .universe-memory p{font-size:11px}
+  .cosmos-footnote{margin:14px auto 20px}
+  .song-guess-win img{max-height:52dvh}
+}
+@media(max-width:510px){
+  .cosmos-explore .universe-memory{display:flex;flex-direction:column}
+  .cosmos-explore .universe-memory-photo{height:clamp(175px,28vh,250px);min-height:0}
+  .cosmos-explore .universe-memory-copy{padding:14px 6px 4px}
+  .cosmos-explore .universe-memory h3{font-size:27px}
+  .cosmos-explore .universe-memory p{font-size:12px}
+  .cosmos-explore .universe-coordinates{font-size:8px}
+  .cosmos-discovery{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .cosmos-planet,.cosmos-satellite,.cosmos-pulse{animation:none!important}
+  .cosmos-explore .universe-memory.memory-arrived .universe-memory-copy{animation:none}
+}
