@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="responsive-fix.css?v=1">
+  <link rel="stylesheet" href="responsive-fix.css?v=3">
 </head>
 <body>
   <canvas id="space" aria-hidden="true"></canvas>
@@ -133,26 +133,31 @@
           <p class="letter-chapter-note" id="letterTopic">UNA NUEVA CARTA, UN NUEVO CAPÍTULO</p>
           <button type="button" class="button primary" id="readLetter">Leer esta carta <span>✧</span></button>
           <div class="soundtrack" id="playlistPanel">
-            <span>LA MÚSICA DE NUESTRA HISTORIA</span>
-            <p>Estas cinco canciones, y ninguna más. Una banda sonora elegida para ti.</p>
+            <span>LA BANDA SONORA DE ROSITA</span>
+            <p>Ocho canciones que forman parte de nuestra historia. Escoge cuál quieres escuchar.</p>
             <div class="music-now-playing" aria-live="polite">
-              <span id="musicTrackCount">01 / 05 · EN PAUSA</span>
-              <strong id="musicTrackTitle">Nuestra canción especial</strong>
-              <small id="musicTrackArtist">Un recuerdo de los dos</small>
+              <span id="musicTrackCount">02 / 08 · LISTA PARA ESCUCHAR</span>
+              <strong id="musicTrackTitle">Labios de Cereza 2</strong>
+              <small id="musicTrackArtist">T3R Elemento</small>
             </div>
-            <div class="soundtrack-controls" role="group" aria-label="Elige una de las cinco canciones">
-              <button type="button" class="song-choice active" data-track="0" aria-pressed="true">01 · Nuestra canción especial</button>
-              <button type="button" class="song-choice" data-track="1" aria-pressed="false">02 · Labios de Cereza 2</button>
+            <div class="soundtrack-controls" role="group" aria-label="Escoge una de las ocho canciones">
+              <button type="button" class="song-choice" data-track="0" aria-pressed="false">01 · Pista que me compartiste</button>
+              <button type="button" class="song-choice active" data-track="1" aria-pressed="true">02 · Labios de Cereza 2</button>
               <button type="button" class="song-choice" data-track="2" aria-pressed="false">03 · My Love Mine All Mine</button>
               <button type="button" class="song-choice" data-track="3" aria-pressed="false">04 · Tu Sancho</button>
               <button type="button" class="song-choice" data-track="4" aria-pressed="false">05 · WILDFLOWER</button>
+              <button type="button" class="song-choice" data-track="5" aria-pressed="false">06 · Mama's Boy</button>
+              <button type="button" class="song-choice" data-track="6" aria-pressed="false">07 · Someone to Spend Time With</button>
+              <button type="button" class="song-choice" data-track="7" aria-pressed="false">08 · Dame Amor</button>
             </div>
             <div class="music-transport">
               <button type="button" id="musicPrevious" aria-label="Canción anterior">← Anterior</button>
-              <button type="button" id="musicPlay" aria-label="Reproducir canción">▶ Reproducir</button>
+              <button type="button" id="musicPlay" aria-label="Reproducir canción">▶ Escuchar</button>
               <button type="button" id="musicNext" aria-label="Canción siguiente">Siguiente →</button>
             </div>
-            <small class="music-help">Selecciona una canción y presiona reproducir. Si todavía no está publicada, necesitarás añadir su archivo MP3.</small>
+            <div id="officialPlayerHost" class="official-player-host" hidden></div>
+            <a id="musicOpenOfficial" class="music-official-link" href="https://www.youtube.com/watch?v=nRsKRKaX3HY" target="_blank" rel="noopener noreferrer">Abrir canción oficial en YouTube ↗</a>
+            <small class="music-help">Las canciones se reproducen desde sus canales oficiales. Si alguna no permite reproducción integrada, usa el enlace a YouTube.</small>
           </div>
         </div>
         <article class="letter-paper" aria-label="Carta de amor">
@@ -168,9 +173,9 @@
     <section class="scene" id="sorpresas" data-scene="4" aria-label="Sorpresas interactivas" inert>
       <div class="scene-scroll section-layout surprise-layout">
         <div class="section-head center">
-          <div class="kicker">CAPÍTULO 05 <span>—</span> TRES PEQUEÑAS SORPRESAS</div>
+          <div class="kicker">CAPÍTULO 05 <span>—</span> CUATRO SORPRESAS Y UN RECUERDO</div>
           <h2>Antes de llegar al final,<br><em>abre estos secretos.</em></h2>
-          <p>Tres secretos escritos con nuestros nombres. Descúbrelos y abre un recuerdo especial que preparé solo para ti.</p>
+          <p>Abre los tres regalos, adivina nuestra canción especial y descubre un recuerdo que guardo con cariño.</p>
         </div>
         <div class="surprise-cards" id="surpriseCards">
           <button class="surprise-card" type="button" data-surprise="0" aria-pressed="false"><span class="surprise-front"><span class="surprise-index">REGALO 01</span><span class="surprise-icon">✉</span><span class="surprise-action">Toca para descubrir <span>↗</span></span></span><span class="surprise-back"><span class="surprise-index">SECRETO 01</span><span class="surprise-back-title">Nuestra coincidencia</span><span class="surprise-back-message">El mejor encuentro no fue ganar una partida: fue conocerte a ti, Rosita.</span><span class="surprise-discovered">✧ DESCUBIERTO</span></span></button>
@@ -178,6 +183,32 @@
           <button class="surprise-card" type="button" data-surprise="2" aria-pressed="false"><span class="surprise-front"><span class="surprise-index">REGALO 03</span><span class="surprise-icon">♡</span><span class="surprise-action">Toca para descubrir <span>↗</span></span><span class="surprise-back"><span class="surprise-index">SECRETO 03</span><span class="surprise-back-title">Un amor con acciones</span><span class="surprise-back-message">Quiero cuidarte, escucharte y demostrarte lo que siento cada día.</span><span class="surprise-discovered">✧ DESCUBIERTO</span></span></button>
         </div>
         <div class="surprise-swipe-hint">↔ Desliza para encontrar los tres regalos</div>
+        <section class="song-guess" id="songGuess" aria-labelledby="songGuessHeading">
+          <div class="song-guess-header"><span class="song-guess-overline">REGALO 04 · NUESTRA BANDA SONORA</span>
+            <h3 id="songGuessHeading">¿Cuál es nuestra canción especial?</h3>
+            <p>Entre todas estas canciones hay una que siempre me hace pensar en nosotros. ¿La recuerdas, Rosita?</p>
+          </div>
+          <div class="song-guess-grid" id="songGuessOptions" role="group" aria-label="Elige nuestra canción especial">
+            <button type="button" data-song-guess="0">Pista que me compartiste <small>Un audio de nuestros recuerdos</small></button>
+            <button type="button" data-song-guess="1">Labios de Cereza 2 <small>T3R Elemento</small></button>
+            <button type="button" data-song-guess="2">My Love Mine All Mine <small>Mitski</small></button>
+            <button type="button" data-song-guess="3">Tu Sancho <small>Fuerza Regida</small></button>
+            <button type="button" data-song-guess="4">WILDFLOWER <small>Billie Eilish</small></button>
+            <button type="button" data-song-guess="5">Mama's Boy <small>Dominic Fike</small></button>
+            <button type="button" data-song-guess="6">Someone to Spend Time With <small>Los Retros</small></button>
+            <button type="button" data-song-guess="7">Dame Amor <small>Officialalex425</small></button>
+          </div>
+          <div id="songGuessFeedback" class="song-guess-feedback" role="status" aria-live="polite">Toca el nombre de una canción para responder. Puedes intentarlo las veces que quieras.</div>
+          <div class="song-guess-win" id="songGuessWin" hidden>
+            <img src="assets/fotos/vida-05.webp" alt="Un recuerdo de Steven y Ashley juntos" loading="lazy">
+            <div>
+              <span>✦ NUESTRA CANCIÓN DESCUBIERTA</span>
+              <h4>Someone to Spend Time With — Los Retros</h4>
+              <p>Antes solo éramos Universe y Rosita, dos personas que se encontraron jugando. Hoy, entre tantas canciones y recuerdos, lo que más quiero es seguir compartiendo mi tiempo contigo. Te amo, Ashley. ♡</p>
+              <a href="https://www.youtube.com/watch?v=KFjmq0rEyDw" target="_blank" rel="noopener noreferrer">Escuchar nuestra canción especial ↗</a>
+            </div>
+          </div>
+        </section>
         <div class="alias-challenge memory-reveal" id="aliasChallenge">
           <div class="alias-challenge-icon" aria-hidden="true">♡</div>
           <div class="alias-challenge-main">
@@ -195,7 +226,7 @@
             </div>
           </div>
         </div>
-        <div class="secret-status" id="secretStatus"><span class="secret-led"></span> Descubre los 3 secretos para desbloquear la sorpresa final <span id="secretCount">0 / 3</span></div>
+        <div class="secret-status" id="secretStatus"><span class="secret-led"></span> Abre los 3 regalos y encuentra nuestra canción para desbloquear el final <span id="secretCount">0 / 4</span></div>
         <div class="secret-unlocked" id="secretUnlocked" hidden><span>✧ MENSAJE DESBLOQUEADO</span><p>Si volviera a entrar a aquel juego sin saber qué pasaría, volvería a elegir el camino que me llevó a ti.</p><button type="button" class="button primary" data-next>Ver el gran final <span>↗</span></button></div>
       </div>
     </section>
