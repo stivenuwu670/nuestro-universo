@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="responsive-fix.css?v=3">
+  <link rel="stylesheet" href="responsive-fix.css?v=4">
 </head>
 <body>
   <canvas id="space" aria-hidden="true"></canvas>
@@ -37,6 +37,16 @@
     </button>
   </header>
 
+  <!-- Reproductor global: permanece visible aunque se cambie de capítulo. -->
+  <aside id="musicDock" class="music-dock" aria-label="Música de bienvenida" hidden>
+    <div class="music-dock-heading">
+      <div><span>♫ AHORA SUENA</span><strong id="musicDockTitle">Mama's Boy · Dominic Fike</strong></div>
+      <button type="button" id="musicDockClose" aria-label="Cerrar reproductor y detener música">×</button>
+    </div>
+    <div id="officialPlayerHost" class="official-player-host" hidden></div>
+    <span class="music-dock-tip">Si no suena automáticamente, toca ▶ en el video.</span>
+  </aside>
+
   <main id="experience">
     <!-- 1: BIENVENIDA -->
     <section class="scene active" id="inicio" data-scene="0" aria-label="Bienvenida">
@@ -48,6 +58,7 @@
           <p class="intro-description">Comenzamos con dos avatares, un juego y una casualidad. Hoy tenemos historias que ni la mejor partida podría inventar. <strong data-bind="nombre">Ashley</strong>, este pequeño universo tiene nuestros mejores recuerdos.</p>
           <div class="intro-actions">
             <button type="button" class="button primary" data-next>Comenzar el viaje <span aria-hidden="true">↗</span></button>
+            <button type="button" class="intro-music-button" id="introMusicBtn">♫ Entrar con Mama’s Boy</button>
             <span class="small-note"><span class="sparkle">✦</span> Hecho exclusivamente para ti</span>
           </div>
           <div class="date-signature"><span class="date-dash"></span><span data-bind="fechaLarga">12 de noviembre de 2023</span><span class="date-to">—</span><span>mi primer mensaje de amor</span></div>
@@ -155,7 +166,7 @@
               <button type="button" id="musicPlay" aria-label="Reproducir canción">▶ Escuchar</button>
               <button type="button" id="musicNext" aria-label="Canción siguiente">Siguiente →</button>
             </div>
-            <div id="officialPlayerHost" class="official-player-host" hidden></div>
+            <p class="music-dock-explainer">El video se reproduce en el minirreproductor flotante y continúa mientras recorres la página.</p>
             <a id="musicOpenOfficial" class="music-official-link" href="https://www.youtube.com/watch?v=nRsKRKaX3HY" target="_blank" rel="noopener noreferrer">Abrir canción oficial en YouTube ↗</a>
             <small class="music-help">Las canciones se reproducen desde sus canales oficiales. Si alguna no permite reproducción integrada, usa el enlace a YouTube.</small>
           </div>
@@ -278,7 +289,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="cartas.js" defer></script>
   <script src="archivo.js" defer></script>
-  <script src="app.js?v=3" defer></script>
+  <script src="app.js?v=4" defer></script>
   <script src="archivo-ui.js" defer></script>
   <script src="space.js" type="module"></script>
 </body>
