@@ -428,6 +428,9 @@ function updateMusicUI() {
 function setMusicTrack(index, playNow = false) {
   const dock = $("#musicDock");
   if (dock) dock.hidden = true;
+  const notice = $("#musicWelcomeNotice");
+  // El aviso de bienvenida no debe tapar otras canciones elegidas voluntariamente.
+  if (notice && (index + PLAYLIST.length) % PLAYLIST.length !== 4) notice.hidden = true;
   audio.pause();
   audio.removeAttribute("src");
   audio.load();
@@ -506,6 +509,8 @@ function initWelcomeMusicNotice() {
   if (play) play.addEventListener("click", playWelcomeMusic);
   if (dismiss) dismiss.addEventListener("click", () => {
     $("#musicWelcomeNotice").hidden = true;
+    stopMusic();
+    $("#musicDock").hidden = true;
   });
 
   // Si YouTube informa de reproducción efectiva, el aviso deja de ser necesario.
@@ -524,8 +529,14 @@ function initWelcomeMusicNotice() {
 
 function initMusic() {
   audio.loop = false;
-  $("#soundToggle").addEventListener("click", () => musicEnabled ? stopMusic() : startMusic());
-  $("#musicPlay").addEventListener("click", () => musicEnabled ? stopMusic() : startMusic());
+  const toggleMusic = () => {
+    const notice = $("#musicWelcomeNotice");
+    if (notice && !notice.hidden) { playWelcomeMusic(); return; }
+    if (musicEnabled) stopMusic();
+    else startMusic();
+  };
+  $("#soundToggle").addEventListener("click", toggleMusic);
+  $("#musicPlay").addEventListener("click", toggleMusic);
   $("#musicPrevious").addEventListener("click", () => setMusicTrack(selectedTrack - 1, true));
   $("#musicNext").addEventListener("click", () => setMusicTrack(selectedTrack + 1, true));
   $$(".song-choice").forEach(button => button.addEventListener("click", () => setMusicTrack(Number(button.dataset.track), true)));
@@ -539,7 +550,8 @@ function initMusic() {
   });
   const welcome = $("#inicio .intro-actions [data-next]");
   if (welcome) welcome.addEventListener("click", () => {
-    if (selectedTrack === 4) playWelcomeMusic();
+    const notice = $("#musicWelcomeNotice");
+    if (selectedTrack === 4 && notice && !notice.hidden) playWelcomeMusic();
   });
   updateMusicUI();
 }
