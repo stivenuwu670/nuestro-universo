@@ -189,19 +189,40 @@ function openMemory(memory) {
 }
 
 function initStars() {
-  $$("[data-star]").forEach(button => button.addEventListener("click", () => {
-    const i = Number(button.dataset.star);
-    const memory = CONFIG.estrellas[i];
-    $$("[data-star]").forEach(point => point.classList.toggle("selected", point === button));
+  const stars = $$("[data-star]");
+  const visited = new Set([0]);
+  let activeStar = 0;
+
+  function showStar(index) {
+    activeStar = (index + CONFIG.estrellas.length) % CONFIG.estrellas.length;
+    const memory = CONFIG.estrellas[activeStar];
+    const photo = CONFIG.recuerdos[activeStar];
+    visited.add(activeStar);
+
+    stars.forEach((button, i) => {
+      const active = i === activeStar;
+      button.classList.toggle("selected", active);
+      button.classList.toggle("discovered", visited.has(i));
+      button.setAttribute("aria-pressed", String(active));
+    });
     const box = $("#universeMemory");
-    box.style.opacity = "0";
-    window.setTimeout(() => {
-      setText(".universe-kicker", `ESTRELLA ${String(i + 1).padStart(2, "0")} / 06`);
-      setText("#universeMemory h3", memory.titulo);
-      setText("#universeMemory p", memory.texto);
-      box.style.opacity = "1";
-    }, reduceMotion ? 0 : 160);
-  }));
+    box.classList.remove("memory-arrived");
+    setText(".universe-kicker", "ESTRELLA " + String(activeStar + 1).padStart(2, "0") + " / 06");
+    setText("#universeMemory h3", memory.titulo);
+    setText("#universeMemory p", memory.texto);
+    setText("#universeMemoryTag", photo.etiqueta);
+    setText("#universeProgress", String(activeStar + 1).padStart(2, "0") + " — 06");
+    setText("#cosmosExplored", visited.size + " DE 6 ESTRELLAS DESCUBIERTAS");
+    const img = $("#universeMemoryImage");
+    img.src = photo.foto;
+    img.alt = photo.titulo + ": fotografía de Universe y Rosita";
+    // Reinicio de la animación del panel sin retrasar el texto.
+    if (!reduceMotion) window.requestAnimationFrame(() => box.classList.add("memory-arrived"));
+  }
+
+  stars.forEach((button, i) => button.addEventListener("click", () => showStar(i)));
+  $("#universePrevious").addEventListener("click", () => showStar(activeStar - 1));
+  $("#universeNext").addEventListener("click", () => showStar(activeStar + 1));
 }
 
 function initLetter() {
@@ -278,25 +299,37 @@ function initSongGuess() {
   const result = $("#songGuessWin");
   if (!feedback || !result) return;
   let wrongAttempts = 0;
+
   buttons.forEach(button => button.addEventListener("click", () => {
+    const choice = Number(button.dataset.songGuess);
     if (secrets.has(3)) return;
-    if (Number(button.dataset.songGuess) !== 6) {
+
+    // Elegir una opción comienza a reproducir su tema, incluso si es incorrecto.
+    // El reproductor persistente se encarga de detener la pista anterior.
+    setMusicTrack(choice, true);
+    buttons.forEach(item => item.classList.toggle("guess-listening", item === button));
+
+    if (choice !== 6) {
       wrongAttempts++;
       button.classList.add("guess-incorrect");
-      feedback.textContent = wrongAttempts < 2
-        ? "Esta también está en nuestra lista, pero hay otra que es solo nuestra. Intenta de nuevo ♡"
-        : "Pista: su nombre habla de tener alguien especial con quien compartir el tiempo.";
+      const hint = wrongAttempts < 2
+        ? "Suena esta canción, pero aún no es la que buscamos. Prueba otra. ♡"
+        : "Pista: su título habla de compartir tiempo con alguien especial.";
+      feedback.textContent = choice === 0
+        ? "Ese audio todavía no está alojado en la web. Prueba otra canción. ♡"
+        : hint + " Si no suena, pulsa ▶ en el reproductor flotante.";
       return;
     }
+
     buttons.forEach(item => {
       item.disabled = true;
       item.classList.toggle("guess-correct", item === button);
+      item.classList.remove("guess-incorrect");
     });
-    feedback.textContent = "¡Sí, Rosita! Esa es nuestra canción especial. ♡";
+    feedback.textContent = "¡Sí, Rosita! Esa es nuestra canción especial. ♡ Escúchala en el reproductor.";
     result.hidden = false;
     registerSecret(3);
     celebrate(78);
-    if (typeof setMusicTrack === "function") setMusicTrack(6, false);
     result.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
   }));
 }
