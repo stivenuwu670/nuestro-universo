@@ -309,15 +309,13 @@ function initSongGuess() {
     setMusicTrack(choice, true);
     buttons.forEach(item => item.classList.toggle("guess-listening", item === button));
 
-    if (choice !== 6) {
+    if (choice !== 5) {
       wrongAttempts++;
       button.classList.add("guess-incorrect");
       const hint = wrongAttempts < 2
         ? "Suena esta canción, pero aún no es la que buscamos. Prueba otra. ♡"
         : "Pista: su título habla de compartir tiempo con alguien especial.";
-      feedback.textContent = choice === 0
-        ? "Ese audio todavía no está alojado en la web. Prueba otra canción. ♡"
-        : hint + " Si no suena, pulsa ▶ en el reproductor flotante.";
+      feedback.textContent = hint + " Si no suena, pulsa ▶ en el reproductor flotante.";
       return;
     }
 
@@ -373,10 +371,10 @@ function updateCounter() {
   });
 }
 
-// Solo los ocho temas que Steven seleccionó. La web reproduce enlaces oficiales
+// Siete temas seleccionados: reproductores oficiales en lugar de distribuir archivos comerciales.
+// La web reproduce enlaces oficiales
 // sin volver a publicar archivos MP3 comerciales en un repositorio público.
 const PLAYLIST = [
-  { titulo: "Pista que me compartiste", artista: "Audio personal sin título confirmado", archivo: "assets/musica/01-recuerdo-especial.mp3" },
   { titulo: "Labios de Cereza 2", artista: "T3R Elemento", youtube: "nRsKRKaX3HY" },
   { titulo: "My Love Mine All Mine", artista: "Mitski", youtube: "CwGbMYLjIpQ" },
   { titulo: "Tu Sancho", artista: "Fuerza Regida", youtube: "PXSmPTX-SgM" },
@@ -386,7 +384,7 @@ const PLAYLIST = [
   { titulo: "Dame Amor", artista: "Officialalex425", youtube: "N4IALVjPCDE" }
 ];
 const audio = $("#customAudio");
-let selectedTrack = 1;
+let selectedTrack = 0;
 let musicEnabled = false;
 let videoTrack = null;
 
@@ -485,6 +483,45 @@ function stopMusic() {
   musicEnabled = false;
   updateMusicUI();
 }
+function playWelcomeMusic() {
+  const notice = $("#musicWelcomeNotice");
+  if (notice) notice.hidden = true;
+  // Si ya existe el reproductor de bienvenida, evitar crear otro iframe:
+  // el comando procede directamente de un toque real del usuario.
+  if (selectedTrack === 4 && musicFrame()) {
+    const dock = $("#musicDock");
+    if (dock) dock.hidden = false;
+    sendVideoCommand("unMute");
+    sendVideoCommand("playVideo");
+    musicEnabled = true;
+    updateMusicUI();
+  } else {
+    setMusicTrack(4, true);
+  }
+}
+
+function initWelcomeMusicNotice() {
+  const play = $("#musicWelcomePlay");
+  const dismiss = $("#musicWelcomeDismiss");
+  if (play) play.addEventListener("click", playWelcomeMusic);
+  if (dismiss) dismiss.addEventListener("click", () => {
+    $("#musicWelcomeNotice").hidden = true;
+  });
+
+  // Si YouTube informa de reproducción efectiva, el aviso deja de ser necesario.
+  window.addEventListener("message", event => {
+    if (!/^https:\/\/(?:www\.)?youtube(?:-nocookie)?\.com$/.test(event.origin)) return;
+    let data = event.data;
+    if (typeof data === "string") {
+      try { data = JSON.parse(data); } catch { return; }
+    }
+    if (data && data.event === "onStateChange" && data.info === 1) {
+      const notice = $("#musicWelcomeNotice");
+      if (notice) notice.hidden = true;
+    }
+  });
+}
+
 function initMusic() {
   audio.loop = false;
   $("#soundToggle").addEventListener("click", () => musicEnabled ? stopMusic() : startMusic());
@@ -493,7 +530,7 @@ function initMusic() {
   $("#musicNext").addEventListener("click", () => setMusicTrack(selectedTrack + 1, true));
   $$(".song-choice").forEach(button => button.addEventListener("click", () => setMusicTrack(Number(button.dataset.track), true)));
   audio.addEventListener("ended", () => setMusicTrack(selectedTrack + 1, true));
-  $("#introMusicBtn").addEventListener("click", () => setMusicTrack(5, true));
+  $("#introMusicBtn").addEventListener("click", playWelcomeMusic);
   $("#musicDockClose").addEventListener("click", () => {
     stopMusic();
     $("#musicDock").hidden = true;
@@ -502,7 +539,7 @@ function initMusic() {
   });
   const welcome = $("#inicio .intro-actions [data-next]");
   if (welcome) welcome.addEventListener("click", () => {
-    if (selectedTrack === 5) setMusicTrack(5, true);
+    if (selectedTrack === 4) playWelcomeMusic();
   });
   updateMusicUI();
 }
@@ -560,9 +597,14 @@ initSurprises();
 initMemoryReveal();
 initSongGuess();
 initMusic();
+initWelcomeMusicNotice();
 // Intento inmediato: ciertos navegadores silencian el autoplay.
 // En ese caso puede activarse con el botón de bienvenida o el ▶ de YouTube.
-setMusicTrack(5, true);
+setMusicTrack(4, true);
+// Los navegadores pueden bloquear el sonido automático en las primeras visitas.
+// Ofrecemos un control de activación visible que utiliza un gesto del usuario.
+const musicNotice = $("#musicWelcomeNotice");
+if (musicNotice) musicNotice.hidden = false;
 updateCounter();
 window.setInterval(updateCounter, 1000);
 $("#celebrateBtn").addEventListener("click", () => celebrate(180));
