@@ -195,3 +195,44 @@
   .song-guess-win {animation:none}
   .song-guess-grid button {transition:none}
 }
+
+
+/* V3.4 — Mama's Boy desde la bienvenida */
+.music-dock[hidden],.music-dock .official-player-host[hidden] {display:none!important}
+.music-dock{
+  position:fixed;right:clamp(12px,2.2vw,28px);bottom:calc(94px + env(safe-area-inset-bottom,0px));
+  z-index:18;width:min(262px,calc(100vw - 24px));padding:12px 12px 10px;
+  border:1px solid rgba(245,196,231,.45);border-radius:15px;
+  background:linear-gradient(145deg,rgba(27,18,50,.96),rgba(12,10,30,.97));
+  box-shadow:0 14px 48px rgba(0,0,0,.42),0 0 22px rgba(230,132,209,.09);
+  backdrop-filter:blur(16px);
+}
+.music-dock-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.music-dock-heading div{min-width:0;display:flex;flex-direction:column;gap:5px}
+.music-dock-heading span{color:#f3afd9;letter-spacing:.14em;font-size:9px;font-weight:700}
+.music-dock-heading strong{color:#f8e3f0;font-size:12px;line-height:1.4;font-weight:600;overflow-wrap:anywhere}
+.music-dock-heading button{flex:0 0 25px;height:25px;border:1px solid rgba(244,188,225,.28);border-radius:7px;background:rgba(238,170,217,.12);color:#f9ddf0;font-size:19px;cursor:pointer}
+.music-dock-heading button:focus-visible,.intro-music-button:focus-visible{outline:2px solid #f9c5e9;outline-offset:3px}
+.music-dock .official-player-host{margin:10px 0 8px;border-radius:9px;aspect-ratio:16/9;max-height:none}
+.music-dock-tip{display:block;color:#cbb8d4;font-size:9px;line-height:1.4}
+.intro-music-button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:46px;max-width:100%;padding:11px 16px;border-radius:6px;
+  border:1px solid rgba(245,181,226,.45);background:rgba(240,169,216,.12);
+  color:#f9d7ee;font-size:11px;font-weight:700;letter-spacing:.04em;
+  cursor:pointer;transition:background .2s,border-color .2s;
+}
+.intro-music-button:hover{background:rgba(244,178,222,.22);border-color:#f6bce1}
+.music-dock-explainer{color:#b6a2c3;font-size:11px;line-height:1.55;margin:9px 0 0}
+@media(max-width:760px){
+  .music-dock{width:min(200px,calc(100vw - 24px));right:10px;bottom:calc(76px + env(safe-area-inset-bottom,0px));padding:9px;border-radius:12px}
+  .music-dock-heading span{font-size:8px}
+  .music-dock-heading strong{font-size:10px}
+  .music-dock-tip{font-size:8px}
+  .intro-music-button{font-size:10px;min-height:42px}
+}
+@media(max-width:390px) {
+  .music-dock{width:175px}
+  .intro-actions{gap:10px}
+}
+@media(prefers-reduced-motion:reduce){.intro-music-button{transition:none}}
