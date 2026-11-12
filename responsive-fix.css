@@ -1,0 +1,93 @@
+/* Nuestro Universo · ajuste visual V3.1 (escritorio, tablet y celular) */
+#experience,.scene,.scene-scroll{min-width:0;min-height:0}
+.scene-scroll{-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;scroll-padding-top:18px}
+.button{max-width:100%}
+@media (min-width:921px){
+  .letter-layout{
+    height:100%;min-height:0;display:grid;
+    grid-template-columns:minmax(0,.89fr) minmax(0,1.11fr);
+    grid-template-rows:minmax(0,1fr);
+    align-content:stretch;align-items:stretch;
+    gap:clamp(22px,4vw,62px);
+    padding:clamp(18px,3.3vh,32px) clamp(24px,5vw,84px);
+    overflow:hidden;
+  }
+  .letter-side{
+    min-width:0;min-height:0;max-width:none;height:100%;
+    overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;
+    padding:2px 12px 28px 2px;
+    scrollbar-width:thin;scrollbar-color:rgba(240,168,206,.4) transparent;
+  }
+  .letter-paper{
+    width:100%;height:100%;min-width:0;min-height:0;
+    max-height:none;margin:0;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .letter-side h2{font-size:clamp(38px,4vw,62px);line-height:1.13}
+  .paper-content{flex:1 1 auto;min-height:0;overflow-y:auto}
+}
+.letter-paper-title{line-height:1.2;overflow-wrap:break-word}
+.letter-text{overflow-wrap:anywhere}
+.letter-signature{position:relative;z-index:1}
+@media (max-width:920px){
+  .letter-layout{
+    width:100%;height:100%;min-height:0;
+    display:flex;flex-direction:column;
+    justify-content:flex-start;align-items:stretch;
+    gap:24px;padding:28px clamp(18px,4.5vw,40px) 44px;
+    overflow-x:hidden;overflow-y:auto;
+  }
+  .letter-side{
+    flex:0 0 auto;width:100%;max-width:760px;
+    height:auto;max-height:none;min-height:0;
+    padding:0;overflow:visible;
+  }
+  .letter-side h2{font-size:clamp(36px,6vw,58px);line-height:1.14}
+  .letter-paper{
+    flex:0 0 auto;width:100%;max-width:760px;
+    height:clamp(455px,64dvh,680px);
+    min-height:0;max-height:none;margin:0;
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .paper-content{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto}
+}
+@media (max-width:760px){
+  .topbar{height:calc(67px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+  #experience{top:calc(67px + env(safe-area-inset-top,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .bottom-bar{height:calc(64px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px)}
+  .letter-layout{padding:24px 20px 46px;gap:22px}
+  .letter-side h2{font-size:clamp(36px,9vw,50px);margin:14px 0 15px;line-height:1.13}
+  .letter-side>p{font-size:13px;line-height:1.75;margin-bottom:18px}
+  .letter-tab{min-height:74px;padding:11px 9px}
+  .letter-tab>span{font-size:clamp(23px,6vw,29px)}
+  .letter-paper{height:clamp(450px,65dvh,650px);padding:22px 20px 19px}
+  .letter-paper-title{font-size:clamp(23px,6.2vw,29px)}
+  .letter-salutation{font-size:clamp(27px,7.6vw,35px)}
+  .paper-content{padding:14px 8px 0 0}
+  .letter-text{font-size:14px;line-height:1.85}
+  .letter-signature strong{font-size:clamp(21px,6vw,27px)}
+  .button{white-space:normal;text-align:center;gap:12px}
+  .final-layout{min-height:100%;justify-content:flex-start;padding:32px 18px 44px}
+  .final-layout h2{font-size:clamp(38px,9vw,57px);line-height:1.12}
+}
+@media (max-width:390px){
+  .topbar{padding-left:11px;padding-right:11px;gap:3px}
+  .brand{font-size:14px}
+  .chapter-nav{gap:0}
+  .chapter-dot{width:clamp(20px,6vw,23px)}
+  .sound-button{width:33px;height:33px;flex:0 0 33px}
+  .letter-layout{padding-left:15px;padding-right:15px}
+  .letter-side h2{font-size:clamp(33px,9vw,40px)}
+  .letter-tabs{gap:5px}
+  .letter-tab{padding:10px 7px;min-height:72px}
+  .letter-tab small{font-size:8px}
+  .letter-paper{padding:20px 17px 17px}
+  .letter-text{font-size:13.5px}
+  .final-layout{padding-left:12px;padding-right:12px}
+}
+@media (max-height:620px) and (min-width:921px){
+  .letter-layout{padding-block:12px}
+  .letter-paper{padding-top:16px;padding-bottom:14px}
+  .paper-content{padding-top:8px}
+  .letter-side h2{font-size:clamp(33px,3.5vw,49px)}
+}
