@@ -21,7 +21,7 @@ Experiencia web romántica de seis capítulos construida con **HTML, CSS y JavaS
 | 02 — Nuestra historia | Seis recuerdos destacados, línea de tiempo, **álbum de 48 fotografías** (19 de Roblox y 29 de otros momentos) y **9 videos reproducibles**. |
 | 03 — Nuestro universo | Constelación de seis estrellas interactivas. |
 | 04 — Cartas | Mensaje original de **2023**, carta de **2025** y una propuesta de dedicatoria para **2026**. |
-| 05 — Sorpresas | Tres tarjetas interactivas y una pregunta sobre Universe y Rosita. |
+| 05 — Sorpresas | Tres regalos, un recuerdo romántico y el reto de elegir nuestra canción especial entre ocho títulos. |
 | 06 — Final | Dedicatoria, fotos de Roblox a la vida real, contador y lluvia de estrellas. |
 
 En el capítulo 2, pulsa **«Abrir todos nuestros recuerdos»**. Los filtros permiten visualizar todas las fotos, solo Roblox o solo vida real. Al pulsar una foto o un video, se abre un visor que permite avanzar y retroceder. En celular también puedes deslizar.
@@ -111,3 +111,19 @@ Diseñado para escritorio y dispositivos móviles. No depende de servicios exter
 - Por las restricciones de los navegadores, la reproducción comienza después de una interacción del visitante.
 
 **Derechos de autor:** Publicar grabaciones comerciales en GitHub Pages requiere permiso o licencia. No se recomienda alojar archivos sin autorización en un repositorio público.
+
+
+## Actualización V3.3 — La canción de Universe y Rosita
+El capítulo 05 incluye una nueva sorpresa con ocho canciones. La respuesta correcta es **Someone to Spend Time With — Los Retros**. Cuando Ashley la elija se mostrará una dedicatoria con fotografía y contará como el cuarto regalo para desbloquear el final.
+
+La selección musical del capítulo 04 contiene estas ocho canciones:
+1. Pista que me compartiste (el audio m.mp3, todavía sin título confirmado)
+2. Labios de Cereza 2 — T3R Elemento
+3. My Love Mine All Mine — Mitski
+4. Tu Sancho — Fuerza Regida
+5. WILDFLOWER — Billie Eilish
+6. Mama's Boy — Dominic Fike
+7. Someone to Spend Time With — Los Retros
+8. Dame Amor — Officialalex425
+
+El sitio integra enlaces y reproductores de YouTube oficiales para las siete canciones identificadas. Los reproductores pueden requerir pulsar Play dentro del video, especialmente en celular, o abrir el enlace oficial si el video bloquea la incrustación. No se alojan grabaciones comerciales en este repositorio. La pista sin título confirmado solo puede reproducirse como audio local si su archivo está disponible y se cuenta con autorización para usarla.
